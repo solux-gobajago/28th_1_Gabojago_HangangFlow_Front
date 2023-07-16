@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Test
+          BABO
         </a>
       </header>
     </div>

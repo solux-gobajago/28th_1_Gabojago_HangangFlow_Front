@@ -21,35 +21,31 @@ function App() {
         });
         console.log(response.data); // Process the response data
         setResponseData(response.data); // Save the response data to the state
-
-        
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
-  
+
     // Call the fetchData function when the component mounts
     fetchData();
   }, []); // Empty dependency array to run the effect only once when the component mounts
 
   return (
     <div className="App">
-      {responseData ? (
-      <div>
-        
-        {responseData.items.map((item, index) => (
-          <h1 key={index}>{item.title.replace("<b>","").replace("</b>","")}</h1>
-        ))}
-        {responseData.items.map((item, index) => (
-          <h1 key={index}>{item.address}</h1>
-        ))}
-        {responseData.items.map((item, index) => (
-          <h1 key={index}>{item.link}</h1>
-        ))}
-      </div>
-    ) : (
-      <p>Loading...</p>
-    )}
+      {/* Replace the content inside the p tag with responseData */}
+      <p>{responseData ? responseData.items.map((item, index) => (
+              <span key={index}>{item.address}</span>
+            )) : "Loading..."}
+      </p>
+
+      <p>{responseData.items.map((item, index) => (
+            <h1 key={index}>{item.link}</h1>
+          ))}
+      </p>
+      <p>{false ? responseData.items.map((item, index) => (
+              <span key={index}>{item.address}</span>
+            )) : "Loading..."}
+      </p>
     </div>
   );
 }

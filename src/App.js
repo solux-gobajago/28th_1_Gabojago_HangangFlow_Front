@@ -38,10 +38,11 @@ function App() {
             )) : "Loading..."}
       </p>
 
-      <p>{responseData.items.map((item, index) => (
-            <h1 key={index}>{item.link}</h1>
-          ))}
+      <p>{responseData ? responseData.items.map((item, index) => (
+              <span key={index}>{item.address}</span>
+            )) : "Loading..."}
       </p>
+      
       <p>{false ? responseData.items.map((item, index) => (
               <span key={index}>{item.address}</span>
             )) : "Loading..."}

@@ -2,51 +2,85 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 
+const { kakao } = window;
+
 function App() {
   const [responseData, setResponseData] = useState(null);
 
   useEffect(() => {
-    // Function to fetch data from the API using a CORS proxy
     const fetchData = async () => {
       try {
-        const response = await axios.get("/v1/search/local.json", {
+        const response = await axios.get("/v2/local/search/keyword.json", {
           params: {
             query: "망원한강공원",
-            display: 1
+            size: 1
           },
           headers: {
-            'X-Naver-Client-Id': '6U2rWS_H78sSzQhpQHpT',
-            'X-Naver-Client-Secret': 'V6_0mvK1kF'
+            'Authorization': 'KakaoAK 2bab94d636ff301fb7cbd296fe2c7b92'
           }
         });
-        console.log(response.data); // Process the response data
-        setResponseData(response.data); // Save the response data to the state
+        setResponseData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
-    // Call the fetchData function when the component mounts
     fetchData();
   }, []); // Empty dependency array to run the effect only once when the component mounts
 
-  return (
-    <div className="App">
-      {/* Replace the content inside the p tag with responseData */}
-      <p>{responseData ? responseData.items.map((item, index) => (
-              <span key={index}>{item.address}</span>
-            )) : "Loading..."}
-      </p>
+  useEffect(() => {
+    if (responseData && responseData.documents.length > 0) {
+      const { x, y } = responseData.documents[0];
+      // Your map code goes here...
+      var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+        mapOption = {
+            center: new kakao.maps.LatLng(y,x), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };  
 
-      <p>{responseData ? responseData.items.map((item, index) => (
-              <span key={index}>{item.address}</span>
-            )) : "Loading..."}
-      </p>
-      
-      <p>{false ? responseData.items.map((item, index) => (
-              <span key={index}>{item.address}</span>
-            )) : "Loading..."}
-      </p>
+      // 지도를 생성합니다    
+      var map = new kakao.maps.Map(mapContainer, mapOption); 
+      // Create the marker
+    var marker = new kakao.maps.Marker({
+      position: new kakao.maps.LatLng(y, x),
+      map: map
+    });
+
+    document.getElementById("babo").style.backgroundColor="red";
+    document.getElementById("babo").style.color="blue";
+
+
+    }
+  }, [responseData]);
+
+  return (
+    <div>
+      <header></header>
+      <div className="App">
+        <p>
+          {responseData
+            ? responseData.documents.map((item, index) => (
+                <span key={index}>{item.place_name}</span>
+              ))
+            : "Loading..."}
+        </p>
+        <p>
+          {responseData
+            ? responseData.documents.map((item, index) => (
+                <span key={index}>{item.address_name}</span>
+              ))
+            : "Loading..."}
+        </p>
+        <p>
+          {responseData
+            ? responseData.documents.map((item, index) => (
+                <span key={index}>{item.phone}</span>
+              ))
+            : "Loading..."}
+        </p>
+      </div>
+      <div id="map" style={{ width: "1000px", height: "400px" }}></div>
+    
     </div>
   );
 }

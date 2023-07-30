@@ -1,88 +1,81 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
+import { BrowserRouter, Routes, Route, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
+import Detail from './inc/detail.js';
+import Community from './inc/community.js';
 
-const { kakao } = window;
-
-function App() {
-  const [responseData, setResponseData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/v2/local/search/keyword.json", {
-          params: {
-            query: "망원한강공원",
-            size: 1
-          },
-          headers: {
-            'Authorization': 'KakaoAK 2bab94d636ff301fb7cbd296fe2c7b92'
-          }
-        });
-        setResponseData(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []); // Empty dependency array to run the effect only once when the component mounts
-
-  useEffect(() => {
-    if (responseData && responseData.documents.length > 0) {
-      const { x, y } = responseData.documents[0];
-      // Your map code goes here...
-      var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-        mapOption = {
-            center: new kakao.maps.LatLng(y,x), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
-        };  
-
-      // 지도를 생성합니다    
-      var map = new kakao.maps.Map(mapContainer, mapOption); 
-      // Create the marker
-    var marker = new kakao.maps.Marker({
-      position: new kakao.maps.LatLng(y, x),
-      map: map
-    });
-
-    document.getElementById("babo").style.backgroundColor="red";
-    document.getElementById("babo").style.color="blue";
-
-
-    }
-  }, [responseData]);
-
-  return (
-    <div>
-      <header></header>
-      <div className="App">
-        <p>
-          {responseData
-            ? responseData.documents.map((item, index) => (
-                <span key={index}>{item.place_name}</span>
-              ))
-            : "Loading..."}
-        </p>
-        <p>
-          {responseData
-            ? responseData.documents.map((item, index) => (
-                <span key={index}>{item.address_name}</span>
-              ))
-            : "Loading..."}
-        </p>
-        <p>
-          {responseData
-            ? responseData.documents.map((item, index) => (
-                <span key={index}>{item.phone}</span>
-              ))
-            : "Loading..."}
-        </p>
-      </div>
-      <div id="map" style={{ width: "1000px", height: "400px" }}></div>
-    
+function Nav(){
+  return(
+    <div className='navigator'>
+      <nav className='nav'>
+        <span className='buttons'>
+          <Link to="/login">Login</Link>
+          <Link to="/community">Community</Link>
+        </span>
+      </nav>
     </div>
   );
 }
 
+function Sidebar(){
+  return(
+    <div className='sidebar'>
+      키워드를 선택하세요
+      <ul>
+        <li>메뉴 항목 1</li>
+        <li>메뉴 항목 2</li>
+        <li>메뉴 항목 3</li>
+      </ul>
+    </div>
+
+  );
+}
+
+function Parks(props) {
+  const park_list = [
+    { title: "광나루한강공원" },
+    { title: "강서한강공원" },
+    { title: "난지한강공원" },
+    { title: "뚝섬한강공원" },
+    { title: "망원한강공원" },
+    { title: "반포한강공원" },
+    { title: "양화한강공원" },
+    { title: "여의도한강공원" },
+    { title: "이촌한강공원" },
+    { title: "잠실한강공원" },
+    { title: "잠원한강공원" }
+  ];
+
+  const view_park = (park) => {
+    // Park 컴포넌트를 반환하여 각 공원을 렌더링합니다.
+    return (
+      <div key={park.title} className="park-box" id={park.title} onClick={useNavigate}>
+        {park.title}
+      </div>
+    );
+  };
+
+  return (
+    <div className="parks-container">
+      <h2 id='park-word'>에 맞는 한강공원 검색결과...</h2>
+      <div id="parks-container">
+      {park_list.map(view_park)} 
+      </div>
+    </div>
+  );
+}
+
+function App(){
+    return(
+    <div className="main-container">
+      <Nav></Nav>
+      <div className="content-container">
+        <Sidebar></Sidebar>
+        <Parks></Parks>
+      </div>
+    </div>
+    
+    );
+}
 export default App;

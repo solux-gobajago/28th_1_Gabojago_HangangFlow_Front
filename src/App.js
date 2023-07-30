@@ -47,10 +47,17 @@ function Parks(props) {
     { title: "잠원한강공원" }
   ];
 
-  const view_park = (park) => {
+  
+  const View_park = (park) => {
     // Park 컴포넌트를 반환하여 각 공원을 렌더링합니다.
+    const navigate = useNavigate(); //detail 페이지에 값 전달
+    const handleParkClick = () => {
+      // When the <div> is clicked, navigate to the '/detail' page with the parkTitle in state.
+      navigate('/detail', { state: { parkTitle: park.title } });
+    };
+  
     return (
-      <div key={park.title} className="park-box" id={park.title} onClick={useNavigate}>
+      <div key={park.title} className="park-box" id={park.title} onClick={handleParkClick}>
         {park.title}
       </div>
     );
@@ -60,7 +67,7 @@ function Parks(props) {
     <div className="parks-container">
       <h2 id='park-word'>에 맞는 한강공원 검색결과...</h2>
       <div id="parks-container">
-      {park_list.map(view_park)} 
+      {park_list.map(View_park)} 
       </div>
     </div>
   );

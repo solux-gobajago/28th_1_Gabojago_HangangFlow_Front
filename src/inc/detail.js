@@ -1,20 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, useLocation, Link } from 'react-router-dom';
 import axios from 'axios';
 import './detail.css';
 
 
 const { kakao } = window;
 
-function Detail() {
-  const [responseData, setResponseData] = useState(null);
+function Nav(){
+  return(
+    <div className='navigator'>
+      <nav className='nav'>
+        <span className='buttons'>
+          <Link to="/login">Login</Link>
+          <Link to="/community">Community</Link>
+        </span>
+      </nav>
+    </div>
+  );
+}
 
+function Detail() {
+  const location= useLocation();
+
+  console.log(location.state.parkTitle);
+
+  const [responseData, setResponseData] = useState(null);
+  const park_name=location.state.parkTitle;
   useEffect(() => {
     const fetchData = async () => {
       try {
+        
         const response = await axios.get("/v2/local/search/keyword.json", {
           params: {
-            query: "망원한강공원",
+            query: park_name,
             size: 1
           },
           headers: {
@@ -43,9 +61,9 @@ function Detail() {
       // 지도를 생성합니다    
       var map = new kakao.maps.Map(mapContainer, mapOption); 
       // Create the marker
-    var marker = new kakao.maps.Marker({
-      position: new kakao.maps.LatLng(y, x),
-      map: map
+      var marker = new kakao.maps.Marker({
+        position: new kakao.maps.LatLng(y, x),
+        map: map
     });
 
 
@@ -55,8 +73,12 @@ function Detail() {
 
   return (
     <div>
-      <header></header>
+      <Nav></Nav>
+  
       <div className="App">
+        <div id="slider">pictures</div>
+        <div id="represent">rep</div>
+        <div className='main-content'>
         <p>
           {responseData
             ? responseData.documents.map((item, index) => (
@@ -78,8 +100,10 @@ function Detail() {
               ))
             : "Loading..."}
         </p>
-      </div>
-      <div id="map" style={{ width: "1000px", height: "400px" }}></div>
+        <div id="map" style={{ width: "1000px", height: "500px", margin: "0 auto", marginTop: "80px"}}></div>
+        </div>
+        </div>
+      
     
     </div>
   );

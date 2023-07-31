@@ -78,7 +78,7 @@ function Detail() {
       <div className="App">
         <div id="slider">pictures</div>
         <div id="represent">rep</div>
-        <div className='main-content'>
+        <div className='main-text'>
         <p>
           {responseData
             ? responseData.documents.map((item, index) => (
@@ -100,10 +100,9 @@ function Detail() {
               ))
             : "Loading..."}
         </p>
-        <div id="map" style={{ width: "1000px", height: "500px", margin: "0 auto", marginTop: "80px"}}></div>
         </div>
         </div>
-      
+      <div id="map" style={{ width: "1000px", height: "400px", margin: "0 auto", marginTop: "200px"}}></div>
     
     </div>
   );

@@ -140,13 +140,34 @@ function Sidebar(){
 
   );
 }
+function GrayCircleWithBox({ num }) {
+  num = 8;
+  function rowComment() {
+    return (
+      <tr style={{ borderBottom: '1px solid black' }}>
+        <td>
+          <div className="GrayCircle"></div>
+        </td>
+        <td>
+          <div className="GrayBox">
+            {/* Add the image here */}
+          </div>
+        </td>
+        <td>
+          <button type="button" className="btn btn-light" padding="10px">수정</button>
+          &nbsp; {/* Space between buttons */}
+          <button type="button" className="btn btn-light">삭제</button>
+          <LikeButton></LikeButton>
+        </td>
+      </tr>
+    );
+  }
 
-
-function GrayCircleWithBox() {
   return (
     <div className="GrayCircleWrapper">
       <table>
         <tbody>
+          {/* post 버튼 출력 */}
           <tr style={{ borderBottom: '1px solid black' }}>
             <td>
               <div className="GrayCircle"></div>
@@ -160,29 +181,80 @@ function GrayCircleWithBox() {
               <button type="button" className="btn btn-outline-dark">Dark</button>
             </td>
           </tr>
-          <tr style={{ borderBottom: '1px solid black' }}>
-            <td>
-              <div className="GrayCircle"></div>
-            </td>
-            <td>
-              <div className="GrayBox">
-                {/* Add the image here */}
-              </div>
-            </td>
-            <td>
-              <button type="button" className="btn btn-light">Light</button>
-              &nbsp; {/* Space between buttons */}
-              <button type="button" className="btn btn-light">Light</button>
-              &nbsp; {/* Space between regular button and LikeButton */}
-              <LikeButton></LikeButton>
-            </td>
-          </tr>
+
+          {/* rowComment 함수를 num 수에 맞게 반복 출력 */}
+          {Array.from({ length: num }).map((_, index) => (
+            <React.Fragment key={index}>{rowComment()}</React.Fragment>
+          ))}
         </tbody>
       </table>
     </div>
   );
 }
 
+
+/*
+function GrayCircleWithBox({refreshAfterBoxList},{num}) {
+  function rowComment(){
+    <tr style={{ borderBottom: '1px solid black' }}>
+            <td>
+              <div className="GrayCircle"></div>
+            </td>
+            <td>
+              <div className="GrayBox">
+                {/* Add the image here/}
+              </div>
+            </td>
+            <td>
+             <button type="button" className="btn btn-light" style={{ marginleft: '10px' }}>Light</button>
+              &nbsp; {/* Space between buttons }
+              <button type="button" className="btn btn-light">Light</button>
+              &nbsp; {/* Space between regular button and LikeButton/}
+              <LikeButton></LikeButton>
+            </td>
+          </tr>
+  }
+  return (
+    <div className="GrayCircleWrapper">
+      <table>
+        <tbody>
+        <tr style={{ borderBottom: '1px solid black' }}>
+            <td>
+              <div className="GrayCircle"></div>
+            </td>
+            <td>
+              <div className="GrayBox"></div>
+            </td>
+            <td>
+              <Button variant="light">POST</Button>
+              &nbsp; {/* Space between buttons }
+              <button type="button" className="btn btn-outline-dark">Dark</button>
+            </td>
+          </tr>
+          <tr style={{ borderBottom: '1px solid black' }}>
+            <td>
+              <div className="GrayCircle"></div>
+            </td>
+            <td>
+              <div className="GrayBox">
+                {/* Add the image here}
+              </div>
+            </td>
+            <td>
+             <button type="button" className="btn btn-light" style={{ marginleft: '10px' }}>Light</button>
+              &nbsp; {/* Space between buttons }
+              <button type="button" className="btn btn-light">Light</button>
+              &nbsp; {/* Space between regular button and LikeButton }
+              <LikeButton></LikeButton>
+            </td>
+          </tr>
+          {rowComment}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+*/
 
 function App(){
     return(

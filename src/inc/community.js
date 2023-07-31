@@ -13,6 +13,7 @@ import heart from './heart.png';
 import fullheart from './fullheart.png';
 import {HeartOutlined, HeartFilled} from '@ant-design/icons';
 import './style.css'
+
 class LikeButton extends React.Component {
   state = {
     isChecked: false,
@@ -37,6 +38,7 @@ class LikeButton extends React.Component {
     return (
       <React.Fragment>
         <div className="icons-list">
+
           {this.state.isChecked ? (
             <HeartFilled style={{ color: 'red', fontSize: '20px' }} onClick={this.onClick} />
           ) : (
@@ -44,6 +46,14 @@ class LikeButton extends React.Component {
             <HeartOutlined className="heartbutton" onClick={this.onClick} />
           )}
           <h3>{this.state.notice}</h3>
+          &nbsp; {/* Space between buttons */}
+          &nbsp; {/* Space between buttons */}
+          &nbsp; {/* Space between buttons */}
+          &nbsp; {/* Space between buttons */}
+          &nbsp; {/* Space between buttons */}
+          &nbsp; {/* Space between buttons */}
+          &nbsp; {/* Space between buttons */}
+          &nbsp; {/* Space between buttons */}
         </div>
       </React.Fragment>
     );
@@ -61,18 +71,24 @@ function GrayCircleWithBox() {
   );
 }*/
 
-function Nav(){
-  return(
+function Nav() {
+  return (
     <div className='navigator'>
       <nav className='nav'>
         <span className='buttons'>
-          <Link to="/login">Login</Link>
-          <Link to="/community">Community</Link>
+          <Link to="/login">
+            <button type="button" className="btn btn-outline-light">lOGIN</button>
+          </Link>
+          {' '} {/* Add a regular space between the buttons */}
+          <Link to="/community">
+          <button type="button" className="btn btn-outline-light">COMMUNITY</button>
+          </Link>
         </span>
       </nav>
     </div>
   );
 }
+
 
 function Sidebar(){
   return(
@@ -140,7 +156,8 @@ function GrayCircleWithBox() {
             </td>
             <td>
               <Button variant="light">POST</Button>
-              <button type="button" class="btn btn-outline-dark">Dark</button>
+              &nbsp; {/* Space between buttons */}
+              <button type="button" className="btn btn-outline-dark">Dark</button>
             </td>
           </tr>
           <tr style={{ borderBottom: '1px solid black' }}>
@@ -154,9 +171,9 @@ function GrayCircleWithBox() {
             </td>
             <td>
               <button type="button" className="btn btn-light">Light</button>
-            <button type="button" className="btn btn-light">Light</button>
-            </td>
-            <td>
+              &nbsp; {/* Space between buttons */}
+              <button type="button" className="btn btn-light">Light</button>
+              &nbsp; {/* Space between regular button and LikeButton */}
               <LikeButton></LikeButton>
             </td>
           </tr>
@@ -167,7 +184,6 @@ function GrayCircleWithBox() {
 }
 
 
-
 function App(){
     return(
     <div className="main-container">
@@ -176,8 +192,6 @@ function App(){
         <Sidebar></Sidebar>
       <GrayCircleWithBox></GrayCircleWithBox>
       </div>
-
-
     </div>
     );
 }

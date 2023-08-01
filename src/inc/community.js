@@ -73,8 +73,8 @@ function GrayCircleWithBox() {
 
 function Nav() {
   return (
-    <div className='navigator'>
-      <nav className='nav'>
+    <div className='c-navigator'>
+      <nav className='c-nav'>
         <span className='buttons'>
           <Link to="/login">
             <button type="button" className="btn btn-outline-light">lOGIN</button>
@@ -92,7 +92,7 @@ function Nav() {
 
 function Sidebar(){
   return(
-    <aside className="side-bar">
+    <aside className="c-side-bar">
         <ul>
 
           <li>
@@ -258,9 +258,9 @@ function GrayCircleWithBox({refreshAfterBoxList},{num}) {
 
 function App(){
     return(
-    <div className="main-container">
+    <div className="c-main-container">
       <Nav></Nav>
-      <div className="content-container">
+      <div className="c-content-container">
         <Sidebar></Sidebar>
       <GrayCircleWithBox></GrayCircleWithBox>
       </div>

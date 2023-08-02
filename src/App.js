@@ -8,11 +8,11 @@ import Community from './inc/community.js';
 function Nav(){
   return(
     <div className='navigator'>
-      <nav className='nav'>
-        <span className='buttons'>
-          <Link to="/login">Login</Link>
-          <Link to="/community">Community</Link>
-        </span>
+      <nav className='nav' >
+        <div className='buttons'>
+          <Link to="/login" id='loginbutton'> Login </Link>
+          <Link to="/community" id='communitybutton'> Community </Link>
+        </div>
       </nav>
     </div>
   );
@@ -48,6 +48,7 @@ function Sidebar() {
           <span id='keyword' value='9' onClick={clickkeyword}>9</span>
         </div>
       </div>
+      
       <div className='print-selected'>
         <h1>{selected+"...에 맞는 한강공원 검색 결과"}</h1>
       </div>
@@ -59,17 +60,17 @@ function Sidebar() {
 function Parks(props) {
 
   const park_list = [
-    { title: "광나루한강공원" },
-    { title: "강서한강공원" },
-    { title: "난지한강공원" },
-    { title: "뚝섬한강공원" },
-    { title: "망원한강공원" },
-    { title: "반포한강공원" },
-    { title: "양화한강공원" },
-    { title: "여의도한강공원" },
-    { title: "이촌한강공원" },
-    { title: "잠실한강공원" },
-    { title: "잠원한강공원" }
+    { title: "광나루한강공원", location:"서울 강동구 천호동 351-1" },
+    { title: "강서한강공원", location:"서울 강서구 개화동 276-1" },
+    { title: "난지한강공원", location:"서울 마포구 상암동 495-72" },
+    { title: "뚝섬한강공원", location:"서울 광진구 자양동 427-6" },
+    { title: "망원한강공원", location:"서울 마포구 망원동 205-4" },
+    { title: "반포한강공원", location:"서울 서초구 반포2동 115-5" },
+    { title: "양화한강공원", location:"서울 영등포구 당산동 96-1" },
+    { title: "여의도한강공원", location:"서울 영등포구 여의도동 85" },
+    { title: "이촌한강공원", location:"서울 용산구 이촌동 302-17" },
+    { title: "잠실한강공원", location:"서울 송파구 잠실동 1-1" },
+    { title: "잠원한강공원", location:"서울 강남구 압구정동 386" }
   ];
   
   
@@ -83,7 +84,8 @@ function Parks(props) {
   
     return (
       <div key={park.title} className="park-box" id={park.title} onClick={handleParkClick}>
-        {park.title}
+        <h3>{park.title}</h3>
+        <p>{park.location}</p>
       </div>
     );
   };
@@ -106,8 +108,11 @@ function App(){
     <div className="main-container">
       <Nav></Nav>
       <div className="content-container">
+      
         <Sidebar></Sidebar>
+        <div className="container">
         <Parks></Parks>
+        </div>
       </div>
     </div>
     

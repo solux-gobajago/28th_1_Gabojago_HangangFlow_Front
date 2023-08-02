@@ -1,5 +1,5 @@
 body{
-    background-color: #ffffff;
+    background-image: url("background2.jpg");
   }
 
   .navigator {
@@ -20,6 +20,31 @@ body{
   .nav {
     margin-left: auto;
   }
+
+  #loginbutton{
+    width: 60px;
+    text-align: center;
+    border: solid;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    position: absolute;
+    transform: translate(-500%,0);
+  }
+  
+  #communitybutton{
+    width: 100px;
+    text-align: center;
+    border: solid;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    position: absolute;
+    transform: translate(-150%,0);
+  }
+  #spinner{
+    transform:translate(440%,190%);
+  }
   .App {
     margin-top: 60px;
     text-align: center;
@@ -27,7 +52,6 @@ body{
   }
   #slider{
     height: 300px;
-    border-style: solid;
     background-color: aliceblue;
   }
   #represent{

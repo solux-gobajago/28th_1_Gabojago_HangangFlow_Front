@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, useLocation, Link } from 'react-router-dom';
 import axios from 'axios';
 import './detail.css';
+import spinner from './Spin-0.6s-200px.gif';
 
 
 const { kakao } = window;
@@ -11,18 +12,18 @@ function Nav(){
     <div className='navigator'>
       <nav className='nav'>
         <span className='buttons'>
-          <Link to="/login">Login</Link>
-          <Link to="/community">Community</Link>
+          <Link to="/login" id='loginbutton'>Login</Link>
+          <Link to="/community" id='communitybutton'>Community</Link>
         </span>
       </nav>
     </div>
   );
 }
 
+
 function Detail() {
   const location= useLocation();
 
-  console.log(location.state.parkTitle);
 
   const [responseData, setResponseData] = useState(null);
   const park_name=location.state.parkTitle;
@@ -46,7 +47,7 @@ function Detail() {
     };
 
     fetchData();
-  }, []); // Empty dependency array to run the effect only once when the component mounts
+  }, [park_name]); // Empty dependency array to run the effect only once when the component mounts
 
   useEffect(() => {
     if (responseData && responseData.documents.length > 0) {
@@ -71,39 +72,94 @@ function Detail() {
     }
   }, [responseData]);
 
-  return (
+  const [currentImage, setCurrentImage] = useState(0);
+  const images = [`${park_name}1.jpg`, `${park_name}2.jpg`, `${park_name}3.jpg`];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 3000); // 이미지 변경 주기를 5초로 설정 (5000ms)
+
+    return () => clearInterval(interval); // 컴포넌트가 언마운트될 때 interval 클리어
+  }, [images.length]);
+
+
+function Wholepage(){
+  return(
     <div>
       <Nav></Nav>
   
-      <div className="App">
-        <div id="slider">pictures</div>
-        <div id="represent">rep</div>
-        <div className='main-text'>
-        <p>
-          {responseData
-            ? responseData.documents.map((item, index) => (
-                <span key={index}>{item.place_name}</span>
-              ))
-            : "Loading..."}
-        </p>
-        <p>
-          {responseData
-            ? responseData.documents.map((item, index) => (
-                <span key={index}>{item.address_name}</span>
-              ))
-            : "Loading..."}
-        </p>
-        <p>
-          {responseData
-            ? responseData.documents.map((item, index) => (
-                <span key={index}>{item.phone}</span>
-              ))
-            : "Loading..."}
-        </p>
-        </div>
-        </div>
-      <div id="map" style={{ width: "1000px", height: "400px", margin: "0 auto", marginTop: "200px"}}></div>
-    
+  <div className="App">
+    <div id="slider" style={{
+      overflow: 'hidden',
+      position: 'relative',
+      width: '100%',
+      height: '300px', // 이미지의 높이를 지정 (원하는 높이로 변경해주세요)
+    }}>
+      {images.map((image, index) => (
+      <img
+        key={index}
+        src={require(`./parkimage/${image}`)}
+        alt={park_name}
+        style={{
+          objectFit: 'cover',
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          opacity: index === currentImage ? 1 : 0,
+          transition: 'opacity 0.5s ease-in-out',
+        }}
+      />
+    ))}
+    </div>
+    <div id="represent">rep</div>
+    <div className='main-text'>
+    <p>
+      {responseData
+        ? responseData.documents.map((item, index) => (
+            <span key={index}>{item.place_name}</span>
+          ))
+        : "Loading..."}
+    </p>
+    <p>
+      {responseData
+        ? responseData.documents.map((item, index) => (
+            <span key={index}>{item.address_name}</span>
+          ))
+        : "Loading..."}
+    </p>
+    <p>
+      {responseData
+        ? responseData.documents.map((item, index) => (
+            <span key={index}>{item.phone}</span>
+          ))
+        : "Loading..."}
+    </p>
+    </div>
+    </div>
+  <div id="map" style={{ width: "1000px", height: "400px", margin: "0 auto", marginTop: "200px"}}></div>
+
+
+    </div>
+  )
+}
+
+function Loading(){
+  return(
+    <div>
+      <div style={{width:"100%", height:"100vh", backgroundColor:"rgba(75,75,75,0.4)"}}>
+      <img src={spinner} id= "spinner" style={{position:"absolute"}} width="10%"></img>
+      </div>
+    </div>
+  )
+}
+
+  return (
+    <div>
+      {responseData? <Wholepage></Wholepage>:
+      <Loading></Loading>}
     </div>
   );
 

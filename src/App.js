@@ -24,28 +24,56 @@ function Sidebar() {
   
   const clickkeyword = (event) => {
     const value = event.target.getAttribute('value');
-  
+    
     if (!selected.includes(value)){
       setSelected([...selected, value]);
+      event.target.style.backgroundColor="grey";
+    }
+
+    else{
+      setSelected(selected.filter(item => item !== value));
+      event.target.style.backgroundColor="rgba(234, 234, 234, 0.9)";
     }
     
     //console.log(selected.length); // Just to verify the selected values, you can remove this line later
 
   };
 
+  const temporal = (event) => {
+    event.target.style.backgroundColor="rgb(231, 181, 181)";
+  };
+
   return (
     <div>
       <div className='sidebar'>
         <div className='keywords-box'>
-          <span id='keyword' value='1' onClick={clickkeyword}>1</span>
-          <span id='keyword' value='2' onClick={clickkeyword}>2</span>
-          <span id='keyword' value='3' onClick={clickkeyword}>3</span>
-          <span id='keyword' value='4' onClick={clickkeyword}>4</span>
-          <span id='keyword' value='5' onClick={clickkeyword}>5</span>
-          <span id='keyword' value='6' onClick={clickkeyword}>6</span>
-          <span id='keyword' value='7' onClick={clickkeyword}>7</span>
-          <span id='keyword' value='8' onClick={clickkeyword}>8</span>
-          <span id='keyword' value='9' onClick={clickkeyword}>9</span>
+          <span id='keyword' value='운동' onClick={clickkeyword}>운동</span>
+          <span id='keyword' value='산책' onClick={clickkeyword}>산책</span>
+          <span id='keyword' value='자전거' onClick={clickkeyword}>자전거</span>
+          <span id='keyword' value='라이딩' onClick={clickkeyword}>라이딩</span>
+          <span id='keyword' value='야구장' onClick={clickkeyword}>야구장</span>
+          <span id='keyword' value='수영장' onClick={clickkeyword}>수영장</span>
+          <span id='keyword' value='드론' onClick={clickkeyword}>드론</span>
+          <span id='keyword' value='페스티벌' onClick={clickkeyword}>페스티벌</span>
+          <span id='keyword' value='콘서트' onClick={clickkeyword}>콘서트</span>
+          <span id='keyword' value='불꽃놀이' onClick={clickkeyword}>불꽃놀이</span>
+          <span id='keyword' value='야경' onClick={clickkeyword}>야경</span>
+          <span id='keyword' value='주차장' onClick={clickkeyword}>주차장</span>
+          <span id='keyword' value='화장실' onClick={clickkeyword}>화장실</span>
+          <span id='keyword' value='대중교통' onClick={clickkeyword}>대중교통</span>
+          <span id='keyword' value='편의점' onClick={clickkeyword}>편의점</span>
+          <span id='keyword' value='데이트' onClick={clickkeyword}>데이트</span>
+          <span id='keyword' value='피크닉' onClick={clickkeyword}>피크닉</span>
+          <span id='keyword' value='돗자리' onClick={clickkeyword}>돗자리</span>
+          <span id='keyword' value='나들이' onClick={clickkeyword}>나들이</span>
+          <span id='keyword' value='휴식' onClick={clickkeyword}>휴식</span>
+          <span id='keyword' value='깨끗' onClick={clickkeyword}>깨끗</span>
+          <span id='keyword' value='자연' onClick={clickkeyword}>자연</span>
+          <span id='keyword' value='습지' onClick={clickkeyword}>습지</span>
+          <span id='keyword' value='치킨' onClick={clickkeyword}>치킨</span>
+          <span id='keyword' value='카페' onClick={clickkeyword}>카페</span>
+          <span id='keyword' value='라면' onClick={clickkeyword}>라면</span>
+
         </div>
       </div>
       
@@ -60,17 +88,17 @@ function Sidebar() {
 function Parks(props) {
 
   const park_list = [
-    { title: "광나루한강공원", location:"서울 강동구 천호동 351-1" },
-    { title: "강서한강공원", location:"서울 강서구 개화동 276-1" },
-    { title: "난지한강공원", location:"서울 마포구 상암동 495-72" },
-    { title: "뚝섬한강공원", location:"서울 광진구 자양동 427-6" },
-    { title: "망원한강공원", location:"서울 마포구 망원동 205-4" },
-    { title: "반포한강공원", location:"서울 서초구 반포2동 115-5" },
-    { title: "양화한강공원", location:"서울 영등포구 당산동 96-1" },
-    { title: "여의도한강공원", location:"서울 영등포구 여의도동 85" },
-    { title: "이촌한강공원", location:"서울 용산구 이촌동 302-17" },
-    { title: "잠실한강공원", location:"서울 송파구 잠실동 1-1" },
-    { title: "잠원한강공원", location:"서울 강남구 압구정동 386" }
+    { title: "광나루한강공원", location:"서울 강동구 천호동" },
+    { title: "강서한강공원", location:"서울 강서구 개화동" },
+    { title: "난지한강공원", location:"서울 마포구 상암동" },
+    { title: "뚝섬한강공원", location:"서울 광진구 자양동" },
+    { title: "망원한강공원", location:"서울 마포구 망원동" },
+    { title: "반포한강공원", location:"서울 서초구 반포2동" },
+    { title: "양화한강공원", location:"서울 영등포구 당산동" },
+    { title: "여의도한강공원", location:"서울 영등포구 여의도동" },
+    { title: "이촌한강공원", location:"서울 용산구 이촌동" },
+    { title: "잠실한강공원", location:"서울 송파구 잠실동" },
+    { title: "잠원한강공원", location:"서울 강남구 압구정동" }
   ];
   
   
@@ -85,7 +113,7 @@ function Parks(props) {
     return (
       <div key={park.title} className="park-box" id={park.title} onClick={handleParkClick}>
         <h3>{park.title}</h3>
-        <p>{park.location}</p>
+        <p style={{marginLeft:"40px"}}>{park.location}</p>
       </div>
     );
   };

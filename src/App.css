@@ -14,8 +14,8 @@ body {
 }
 
 .navigator {
-  border-style: solid;
-  border-color: rgba(255, 255, 255, 0.3);
+  /* border-style: solid;
+  border-color: rgba(255, 255, 255, 0.3); */
   border-width: 1px;
   border-left: none;
   position: fixed;
@@ -35,6 +35,8 @@ body {
 }
 
 #loginbutton{
+  width: 60px;
+  text-align: center;
   border: solid;
   border-radius: 20px;
   color: white;
@@ -44,6 +46,8 @@ body {
 }
 
 #communitybutton{
+  width: 100px;
+  text-align: center;
   border: solid;
   border-radius: 20px;
   color: white;
@@ -66,8 +70,8 @@ body {
 }
 .sidebar {
   
-  border-style: solid;
-  border-color: rgba(255, 255, 255, 0.3);
+  /* border-style: solid;
+  border-color: rgba(255, 255, 255, 0.3); */
   border-width: 1px;
   border-top: none;
   border-left: none;
@@ -86,25 +90,33 @@ body {
 .keywords-box{
 
   width: 250px;
-  height: 280px;
+  height: 600px;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 20px;
   margin: 0 auto;
-  margin-top: 320px;
+
   display: flex;
   flex-wrap: wrap;
 }
 
-#keyword{
+#keyword {
   width: 30%;
   height: 20px;
   margin: 0 auto;
   margin-top: 33px;
-  background-color: rgb(171, 86, 12);
-  box-shadow: #464646;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
-  box-sizing: border-box;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(234, 234, 234, 0.9);
+  transition: background-color 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+#keyword:hover {
+  background-color: rgb(231, 181, 181);
+  transform: scale(1.05);
 }
 
 .print-selected{

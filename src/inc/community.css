@@ -1,0 +1,253 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url(./Hawaii_Ocean.jpg)
+  }
+  
+  .c-main-container {
+    display: grid;
+    grid-template-rows: 150px 1fr; /* 변경된 높이 (첫 번째 행: 150px, 두 번째 행: 나머지) */
+    grid-template-columns: 250px 1fr;
+    height: 150vh; /* 높이를 150vh로 설정 */
+  }
+  
+  .c-navigator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 0; /* Remove any margins */
+    /*background-color: #f0f0f0;*/
+    background-color: rgba(16, 58, 106, 0.614);
+    z-index: 1;
+  }
+  
+  .c-nav {
+    margin-left: auto;
+  }
+  /*
+  .content-container {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3; /* 변경된 열 위치 
+    overflow-y: hidden;
+    padding-top: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-right: 170px;
+    border-radius: 4%;
+    width: 90%;
+    height: 100vh; /* 높이를 100vh로 고정 
+  }
+
+  */
+  
+  
+  
+  
+  /*
+  .content-container {
+    grid-row: 2 / 3;
+    grid-column: 4/5;
+    overflow-y: auto;
+    padding-top: 20px;
+    background-color: rgba( 255, 255, 255, 0.8 );
+    margin-right : 170px;
+    border-radius: 4%;
+    width: 90%; /* Set the width to a desired value (e.g., 80%) 
+    height : 200%;
+  }*/
+.c-content-container {
+  grid-row: 2 / 3;
+  grid-column: 4 / 5;
+  overflow-y: hidden;
+  padding-top: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-right: 170px;
+  border-radius: 4%;
+  width: 90%;
+  height: auto; /* Adjust the height automatically based on the content */
+}
+
+  
+  
+  /* Add the rest of the styles if needed */
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Variable overrides */
+  :root {
+    --primary: #900;
+    --enable-shadows: true;
+    --prefix: "mo-";
+  }
+  
+  /* 노멀라이즈 시작 */
+  body, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;   	    /* 해당 태그의 list-style을 none으로 하는 것으로 ●을 제거한다 */
+  }
+  
+  a {
+    color: inherit;   	    /* 부모 엘리먼트의 값을 물려받는다 */
+    text-decoration: none;    /* 해당 태그의 text-decoration 속성을 none 값으로 하는 것으로 밑줄을 제거한다 */
+  }
+  /* 노멀라이즈 끝 */
+  
+  /* 사이트의 높이를 5000px로 만들어 스크롤 생성 */
+  /*body {
+    /*height: 1000px;*/
+    /*background-color: #727277;
+    body {
+      margin: 0;
+      padding: 0;
+      /*background: url("http://news.samsungdisplay.com/wp-content/uploads/2018/05/5.jpg")
+    }
+    
+    .main-container {
+      display: grid;
+      grid-template-rows: 60px 1fr;
+      grid-template-columns: 250px 1fr;
+      height: 100vh;
+    }
+  }*/
+  
+  /* 사이드바의 너비와 높이를 변수를 통해 통제 */
+  :root {
+    --side-bar-width: 200px;
+    --side-bar-height: 40vh;
+  }
+
+  .c-sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    background-color: beige;
+    width: 250px;
+    height: calc(100vh - 60px);
+    padding: 20px;
+    margin: 0; /* Remove any margins */
+    border: none; /* Remove any borders */
+    z-index: 2;
+  }
+  .c-side-bar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    background-color: rgba(16, 58, 106, 0.614);
+    width: 250px;
+    height: calc(100vh - 60px);
+    padding: 20px;
+    margin: 0; /* Remove any margins */
+    border: none; /* Remove any borders */
+    z-index: 2;
+    /*position: fixed;    /* 스크롤을 따라오도록 지정 */
+    /*position: fixed;
+    top: 60px;
+    left: 0;
+    background-color: rgb(158, 158, 158);
+    width: var(--side-bar-width);
+    min-height: var(--side-bar-height);   /* 사이드바의 높이를 전체 화면 높이의 90%로 지정 
+    margin-top: calc((100vh - var(--side-bar-height))/300 );    /* 사이드바 위와 아래의 마진을 동일하게 지정 */
+  }
+  
+  /* 모든 메뉴의 a에 속성값 부여 */
+  .c-side-bar ul > li > a {
+    display: block;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+  }
+  /* 자식의 position이 absolute일 때 자식을 영역 안에 가두어 준다 */
+  .c-side-bar > ul > li {
+    position: relative;
+  }
+  /* 모든 메뉴가 마우스 인식 시 반응 */
+  .c-side-bar ul > li:hover > a {
+    background-color: #2473bd;
+    border-bottom: 1px solid #2473bd;
+  }
+  /* 사이드바 너비의 80%만큼 왼쪽으로 이동 */
+  .c-side-bar {
+    border-radius: 20px;
+    transform: translate(calc(var(--side-bar-width) * -0.8), 0);  /* X축 이동, Y축 고정 */
+    transition: .5s;
+  }
+  
+  /* 마우스 인식 시 원래의 위치로 이동 */
+  .c-side-bar:hover {
+    transform: translate(-20px, 0);   /* 둥근 모서리의 너비만큼 X축 이동, Y축 고정 */
+  }
+
+  /* GrayCircle.css */
+  .GrayCircleWrapper {
+    display: flex;
+    align-items: center;
+
+
+}
+    :root {
+        /* Define a CSS variable for the circle radius */
+        --circle-radius: 30%;
+    }
+  
+  .GrayCircle {
+    /*width: var(--circle-radius); /* Use the CSS variable for the width and height 
+    height: var(--circle-radius);*/
+    width : 80px;
+    height : 80px;
+    background-color: rgb(131, 131, 134);
+    border-radius: 50%;
+    margin-left: 40px; 
+  }
+  
+  .GrayBox {
+    height: 100px;
+    width: 700px;
+    background-color: gray;
+    margin: 10px; /* Add padding to create space inside the GrayBox */
+  }
+  
+  .GrayBox button {
+    margin-right: 10px;
+  }
+  /*
+  @media (max-width: 768px) {
+    /* For screen sizes up to 768px, set the GrayBox width to 50% of the container 
+    .GrayBox {
+      width: 200%;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    /* For screen sizes larger than 768px, set the GrayBox width to 100px 
+    .GrayBox {
+      width: 85%
+    }
+  }*/
+  table {
+    border-collapse: collapse;
+  }
+  
+  tr {
+    border-bottom: 10px solid black;
+  }
+  td {
+    border-bottom: 10px solid black;
+  }
+  
+  

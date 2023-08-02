@@ -1,0 +1,24 @@
+.login-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center; /* Horizontally center the login-box */
+    /* align-items: center; Vertically center the login-box */
+  }
+  
+.login-box {
+    width: 500px;
+    height: 300px;
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    margin-top: 150px;
+    align-items: center; /* Center children vertically within login-box */
+  }
+  
+.login-text {
+    margin-top: 60px; /* Add some spacing between the input fields and the "SIGN IN" button */
+  }
+  
+  /* Add additional styles for other elements as needed */
+  

@@ -10,7 +10,8 @@ function Nav(){
     <div className='navigator'>
       <nav className='nav' >
         <div className='buttons'>
-          <Link to="/login" id='loginbutton'> Login </Link>
+          <Link to="/" id='homebutton'>HG FLOW </Link>
+          <Link to="/login" id='loginbutton'>  </Link>
           <Link to="/community" id='communitybutton'> Community </Link>
         </div>
       </nav>
@@ -77,15 +78,15 @@ function Sidebar() {
         </div>
       </div>
       
-      <div className='print-selected'>
-        <h1>{selected+"...에 맞는 한강공원 검색 결과"}</h1>
+      <div className='app-print-selected'>
+        <h2>{selected+"...에 맞는 한강공원 검색 결과"}</h2>
       </div>
     </div>
   );
 }
 
 
-function Parks(props) {
+function Parks() {
 
   const park_list = [
     { title: "광나루한강공원", location:"서울 강동구 천호동" },
@@ -111,9 +112,9 @@ function Parks(props) {
     };
   
     return (
-      <div key={park.title} className="park-box" id={park.title} onClick={handleParkClick}>
+      <div key={park.title} className="app-park-box" id={park.title} onClick={handleParkClick}>
         <h3>{park.title}</h3>
-        <p style={{marginLeft:"40px"}}>{park.location}</p>
+        <p style={{marginLeft:"40px", marginBottom:"8px"}}>{park.location}</p>
       </div>
     );
   };
@@ -122,23 +123,23 @@ function Parks(props) {
 
 
   return (
-    <div className="parks-container">
+    <div className="app-parks-container">
 
-      <div id="parks-container">
+      <div id="app-parks-container">
       {park_list.map(View_park)} 
       </div>
     </div>
   );
 }
 
-function App(){
+function MainApp(){
     return(
-    <div className="main-container">
+    <div className="app-main-container">
       <Nav></Nav>
-      <div className="content-container">
+      <div className="app-content-container">
       
         <Sidebar></Sidebar>
-        <div className="container">
+        <div className="app-container">
         <Parks></Parks>
         </div>
       </div>
@@ -146,4 +147,4 @@ function App(){
     
     );
 }
-export default App;
+export default MainApp;

@@ -1,11 +1,11 @@
 body {
   margin: 0;
   padding: 0;
-
+background-image: url("background.jpg");
 }
 
-.main-container {
-  background-image: url("background.jpg");
+.app-main-container {
+  
   display: grid;
   grid-template-rows: 60px 1fr;
   grid-template-columns: 250px 1fr;
@@ -34,35 +34,13 @@ body {
   margin-left: auto;  
 }
 
-#loginbutton{
-  width: 60px;
-  text-align: center;
-  border: solid;
-  border-radius: 20px;
-  color: white;
-  text-decoration: none;
-  position: absolute;
-  transform: translate(-500%,0);
-}
-
-#communitybutton{
-  width: 100px;
-  text-align: center;
-  border: solid;
-  border-radius: 20px;
-  color: white;
-  text-decoration: none;
-  position: absolute;
-  transform: translate(-150%,0);
-}
-
-.content-container {
+.app-content-container {
   grid-row: 2 / 3;
   grid-column: 2 / 3;
 
   padding-top: 20px;
 }
-.container {
+.app-container {
   display: flex;
   flex-direction: column;
   overflow-y: auto; /* Make the container scrollable when content exceeds the available height */
@@ -91,21 +69,25 @@ body {
 
   width: 250px;
   height: 600px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   margin: 0 auto;
-
+  overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
 }
 
+.keywords-box::-webkit-scrollbar{
+  display: none;
+}
+
 #keyword {
-  width: 30%;
-  height: 20px;
+  width: 40%;
+  height: 40px;
   margin: 0 auto;
   margin-top: 33px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 30px;
+  border-radius: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,24 +97,27 @@ body {
 }
 
 #keyword:hover {
-  background-color: rgb(231, 181, 181);
+  color:white;
+  background-color: rgb(199, 93, 61);
   transform: scale(1.05);
 }
 
-.print-selected{
+.app-print-selected{
   margin: 0 auto;
+  margin-bottom: 35px;
   padding-top: 10px;
   background-image: url("background.jpg");
 
 }
-.print-selected h1{
+.app-print-selected h2{
   margin-left: 100px;
   color:#000000;
+  font-weight: 600;
 }
 
 
 
-.parks-container {
+.app-parks-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -143,37 +128,43 @@ body {
 
   
 }
-.container::-webkit-scrollbar{
+.app-container::-webkit-scrollbar{
   display:none;
   
 } 
-.container{
+.app-container{
   width: 1000px;
   height: 500px;
   margin-left: 180px;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 20px;
 }
-#parks-container{
+#app-parks-container{
   align-items: center;
   /* background-color: rgba(255, 255, 255, 0.7); */
   border-radius: 20px;
   
 }
 
-.park-box {
+.app-park-box {
   width: 800px;
   height: 150px;
   background-color: rgba(184, 184, 184, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
+  font-size: 18px;  
   font-weight: bold;
+
   border-radius: 5px;
   margin-bottom: 10px;
   margin-top: 10px;
   margin-left: 100px;
+}
+
+.app-park-box h3{
+  font-size: 21px;
+  font-weight: bold;
 }
 
 

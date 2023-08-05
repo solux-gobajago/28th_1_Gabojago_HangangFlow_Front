@@ -6,18 +6,18 @@ function Home() {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
-    navigate('/');
+    navigate(-1);
   };
 
   return (
     <div className='login-container' onClick={handleGoBack}>
       <div className='login-box'>
         <div className='login-text'>
-          ID
+          <h3>ID</h3>
           <div>
             <input type='text'></input>
           </div>
-          PASSWORD
+          <h3>PASSWORD</h3>
           <div>
             <input type='text'></input>
           </div>
@@ -26,8 +26,8 @@ function Home() {
             <Link to='/signup'>Join us?</Link>
           </div>
         </div>
-        <button className='close-button' onClick={handleGoBack}>
-        <span className='x-icon'>✕</span>
+        <button className='close-button'>
+        <span className='x-icon' onClick={handleGoBack}>✕</span>
         </button>
       </div>
     </div>

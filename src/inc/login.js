@@ -5,12 +5,14 @@ import './login.css';
 function Home() {
   const navigate = useNavigate();
 
-  const handleGoBack = () => {
-    navigate(-1);
+  const handleGoBack = (event) => {
+    if (event.target.classList.contains('x-icon')) {
+      navigate(-1);
+    }
   };
 
   return (
-    <div className='login-container' onClick={handleGoBack}>
+    <div className='login-container'>
       <div className='login-box'>
         <div className='login-text'>
           <h3>ID</h3>
@@ -20,9 +22,9 @@ function Home() {
           <h3>PASSWORD</h3>
           <div>
             <input type='text'></input>
-          </div>
-          <input type='button' value='SIGN IN'></input>
-          <div>
+            <div>
+              <span className='signin-button'>SIGN IN</span>
+            </div>
             <Link to='/signup'>Join us?</Link>
           </div>
         </div>

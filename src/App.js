@@ -11,7 +11,7 @@ function Nav(){
       <nav className='nav' >
         <div className='buttons'>
           <Link to="/" id='homebutton'>HG FLOW </Link>
-          <Link to="/login" id='loginbutton'>  </Link>
+          <Link to="/login" id='loginbutton'> LOG IN </Link>
           <Link to="/community" id='communitybutton'> Community </Link>
         </div>
       </nav>
@@ -134,7 +134,7 @@ function SelectedKeyword({ keyword }) {
   const selectedStyle = {
     backgroundColor,
     padding: '5px 10px',
-    borderRadius: '5px',
+    borderRadius: '15px',
     color: 'white',
     marginRight: '5px',
   };

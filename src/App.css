@@ -38,6 +38,7 @@ background-image: url("background3.jpg");
   padding-top: 20px;
 }
 .app-container {
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   overflow-y: auto; /* Make the container scrollable when content exceeds the available height */
@@ -73,6 +74,7 @@ background-image: url("background3.jpg");
   display: flex;
   flex-wrap: wrap;
   padding-bottom: 30px;
+
 }
 
 .keywords-box::-webkit-scrollbar{
@@ -113,8 +115,8 @@ background-image: url("background3.jpg");
 
 }
 .app-print-selected h2{
-  margin-left: 100px;
-  color:#000000;
+  margin-left: 150px;
+  color:rgba(0, 0, 0, 0.7);
   font-weight: 600;
 }
 
@@ -125,8 +127,8 @@ background-image: url("background3.jpg");
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 60px;
+  margin-bottom: 60px;
   width: 1000px;
 
   
@@ -152,17 +154,19 @@ background-image: url("background3.jpg");
 .app-park-box {
   width: 800px;
   height: 150px;
-  background-color: rgba(184, 184, 184, 0.9);
+
+  background-color: rgba(114, 114, 114, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 18px;  
   font-weight: bold;
-
+  cursor: pointer;
   border-radius: 5px;
   margin-bottom: 10px;
   margin-top: 10px;
   margin-left: 100px;
+  transition: background-color 0.2s, transform 0.2s; 
 }
 
 .app-park-box h3{
@@ -170,6 +174,8 @@ background-image: url("background3.jpg");
   font-weight: bold;
 }
 
-
-
-/* Add the rest of the styles if needed */
+.app-park-box:hover{
+  transform: scale(1.03);
+  background-color: rgba(83, 83, 83, 0.5);
+    
+}

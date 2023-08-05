@@ -1,28 +1,13 @@
 import './community.css';
+
 import React, { useState } from 'react';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+
 import {HeartOutlined, HeartFilled} from '@ant-design/icons';
 import './style.css'
 
-/*
-import axios from 'axios';
-import './community.css';
-import { useEffect } from 'react';
-import React, { useState } from 'react';
-import { Form, FormControl, Button } from 'react-bootstrap';
-import Community from './community.js';
-import { Route } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import heart from './heart.png';
-import fullheart from './fullheart.png';
-import {HeartOutlined, HeartFilled} from '@ant-design/icons';
-import './style.css'
-*/
 class LikeButton extends React.Component {
   state = {
     isChecked: false,
@@ -54,7 +39,6 @@ class LikeButton extends React.Component {
             //꽉차있는 하트를 return
             <HeartOutlined className="heartbutton" onClick={this.onClick} />
           )}
-
           <h3 id="text">{this.state.notice}</h3>
           &nbsp; {/* Space between buttons */}
           &nbsp; {/* Space between buttons */}
@@ -76,7 +60,7 @@ function Nav(){
       <nav className='nav' >
         <div className='buttons'>
           <Link to="/" id='homebutton'>HG FLOW </Link>
-          <Link to="/login" id='loginbutton'> </Link>
+          <Link to="/login" id='loginbutton'> LOG IN </Link>
           <Link to="/community" id='communitybutton'> Community </Link>
         </div>
       </nav>
@@ -86,7 +70,6 @@ function Nav(){
 
 
 function Sidebari(){
-
   return(
     <aside className="c-side-bar">
         <ul>
@@ -131,7 +114,7 @@ function Sidebari(){
           <li>
             <a href="#">잠원한강공원</a>
           </li>
-        
+          
         </ul>
       </aside>
 
@@ -187,80 +170,13 @@ function GrayCircleWithBox({ num }) {
       </table>
     </div>
   );
-
 }
-
-
-/*
-function GrayCircleWithBox({refreshAfterBoxList},{num}) {
-  function rowComment(){
-    <tr style={{ borderBottom: '1px solid black' }}>
-            <td>
-              <div className="GrayCircle"></div>
-            </td>
-            <td>
-              <div className="GrayBox">
-                {/* Add the image here/}
-              </div>
-            </td>
-            <td>
-             <button type="button" className="btn btn-light" style={{ marginleft: '10px' }}>Light</button>
-              &nbsp; {/* Space between buttons }
-              <button type="button" className="btn btn-light">Light</button>
-              &nbsp; {/* Space between regular button and LikeButton/}
-              <LikeButton></LikeButton>
-            </td>
-          </tr>
-  }
-  return (
-    <div className="GrayCircleWrapper">
-      <table>
-        <tbody>
-        <tr style={{ borderBottom: '1px solid black' }}>
-            <td>
-              <div className="GrayCircle"></div>
-            </td>
-            <td>
-              <div className="GrayBox"></div>
-            </td>
-            <td>
-              <Button variant="light">POST</Button>
-              &nbsp; {/* Space between buttons }
-              <button type="button" className="btn btn-outline-dark">Dark</button>
-            </td>
-          </tr>
-          <tr style={{ borderBottom: '1px solid black' }}>
-            <td>
-              <div className="GrayCircle"></div>
-            </td>
-            <td>
-              <div className="GrayBox">
-                {/* Add the image here}
-              </div>
-            </td>
-            <td>
-             <button type="button" className="btn btn-light" style={{ marginleft: '10px' }}>Light</button>
-              &nbsp; {/* Space between buttons }
-              <button type="button" className="btn btn-light">Light</button>
-              &nbsp; {/* Space between regular button and LikeButton }
-              <LikeButton></LikeButton>
-            </td>
-          </tr>
-          {rowComment}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-*/
 
 function CmApp(){
-
     return(
     <div className="c-main-container">
       <Nav></Nav>
       <div className="c-content-container">
-
         <Sidebari></Sidebari>
       <GrayCircleWithBox></GrayCircleWithBox>
       </div>
@@ -268,4 +184,3 @@ function CmApp(){
     );
 }
 export default CmApp;
-

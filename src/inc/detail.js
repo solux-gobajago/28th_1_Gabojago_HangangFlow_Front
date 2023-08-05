@@ -12,7 +12,7 @@ function Nav() {
       <nav className='nav'>
         <span className='buttons'>
           <Link to="/" id='homebutton'>HG FLOW </Link>
-          <Link to="/login" id='loginbutton'></Link>
+          <Link to="/login" id='loginbutton'> LOG IN </Link>
           <Link to="/community" id='communitybutton'>Community</Link>
         </span>
       </nav>

@@ -14,33 +14,56 @@ body::-webkit-scrollbar{
 
   #homebutton{
     width: 100px;
+    border-radius: 20px;
+    border-color: rgba(255,255,255,0);
     text-align: center;
     color: white;
     text-decoration: none;
     position: absolute;
     transform: translate(-1500%,-40%);
+    transition: background-color 0.2s, transform 0.2s; 
   }
 
+
   #loginbutton{
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 20px;
+    border-color: rgba(255,255,255,0.2);
     text-align: center;
-    border: solid;
-    border-radius: 100%;
     color: white;
     text-decoration: none;
     position: absolute;
     transform: translate(-120%,-40%);
+    transition: background-color 0.2s, transform 0.2s; 
   }
+
+  #loginbutton:hover{
+    background-color: rgba(114, 114, 114, 0.2);
+    border-color: rgba(114, 114, 114, 0);
+  }
+
   
   #communitybutton{
     width: 100px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 20px;
+    border-color: rgba(255,255,255,0.2);
     text-align: center;
     color: white;
     text-decoration: none;
     position: absolute;
     transform: translate(-230%,-40%);
+    transition: background-color 0.2s, transform 0.2s; 
   }
+
+  #communitybutton:hover{
+    background-color: rgba(114, 114, 114, 0.2);
+    border-color: rgba(114, 114, 114, 0);
+  }
+
   #spinner{
     transform:translate(440%,190%);
   }

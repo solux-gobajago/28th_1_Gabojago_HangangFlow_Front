@@ -1,14 +1,13 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url(./Hawaii_Ocean.jpg)
   }
   
   .c-main-container {
     display: grid;
     grid-template-rows: 150px 1fr; /* 변경된 높이 (첫 번째 행: 150px, 두 번째 행: 나머지) */
     grid-template-columns: 250px 1fr;
-    height: 150vh; /* 높이를 150vh로 설정 */
+    height: 100vh; /* 높이를 150vh로 설정 */
   }
   
   .c-navigator {
@@ -30,46 +29,21 @@ body {
   .c-nav {
     margin-left: auto;
   }
-  /*
-  .content-container {
-    grid-row: 2 / 3;
-    grid-column: 2 / 3; /* 변경된 열 위치 
-    overflow-y: hidden;
-    padding-top: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    margin-right: 170px;
-    border-radius: 4%;
-    width: 90%;
-    height: 100vh; /* 높이를 100vh로 고정 
-  }
 
-  */
-  
-  
-  
-  
-  /*
-  .content-container {
-    grid-row: 2 / 3;
-    grid-column: 4/5;
-    overflow-y: auto;
-    padding-top: 20px;
-    background-color: rgba( 255, 255, 255, 0.8 );
-    margin-right : 170px;
-    border-radius: 4%;
-    width: 90%; /* Set the width to a desired value (e.g., 80%) 
-    height : 200%;
-  }*/
 .c-content-container {
   grid-row: 2 / 3;
   grid-column: 4 / 5;
-  overflow-y: hidden;
+  overflow-y: auto;
   padding-top: 20px;
-  background-color: rgba(255, 255, 255, 0.8);
-  margin-right: 170px;
-  border-radius: 4%;
-  width: 90%;
-  height: auto; /* Adjust the height automatically based on the content */
+  background-color: rgba(255, 255, 255, 0.7);
+  margin-right: 210px;
+  border-radius: 20px;
+  width: 1000px;
+  height: 500px; /* Adjust the height automatically based on the content */
+}
+
+.c-content-container::-webkit-scrollbar{
+  display: none;
 }
 
   
@@ -93,7 +67,7 @@ body {
   }
   
   /* 노멀라이즈 시작 */
-  body, ul, li {
+  ul, li {
     margin: 0;
     padding: 0;
     list-style: none;   	    /* 해당 태그의 list-style을 none으로 하는 것으로 ●을 제거한다 */
@@ -105,23 +79,6 @@ body {
   }
   /* 노멀라이즈 끝 */
   
-  /* 사이트의 높이를 5000px로 만들어 스크롤 생성 */
-  /*body {
-    /*height: 1000px;*/
-    /*background-color: #727277;
-    body {
-      margin: 0;
-      padding: 0;
-      /*background: url("http://news.samsungdisplay.com/wp-content/uploads/2018/05/5.jpg")
-    }
-    
-    .main-container {
-      display: grid;
-      grid-template-rows: 60px 1fr;
-      grid-template-columns: 250px 1fr;
-      height: 100vh;
-    }
-  }*/
   
   /* 사이드바의 너비와 높이를 변수를 통해 통제 */
   :root {
@@ -148,8 +105,8 @@ body {
     background-color: rgba(16, 58, 106, 0.614);
     width: 250px;
     height: calc(100vh - 60px);
-    padding: 20px;
-    margin: 0; /* Remove any margins */
+    /* padding: 20px; */
+    margin: 0 auto; /* Remove any margins */
     border: none; /* Remove any borders */
     z-index: 2;
     /*position: fixed;    /* 스크롤을 따라오도록 지정 */
@@ -161,31 +118,55 @@ body {
     min-height: var(--side-bar-height);   /* 사이드바의 높이를 전체 화면 높이의 90%로 지정 
     margin-top: calc((100vh - var(--side-bar-height))/300 );    /* 사이드바 위와 아래의 마진을 동일하게 지정 */
   }
+
+
+  .c-side-bar ul{
+    width: 250px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .c-side-bar li{
+    width: 250px;
+  }
   
   /* 모든 메뉴의 a에 속성값 부여 */
   .c-side-bar ul > li > a {
     display: block;
     color: white;
-    font-size: 1.4rem;
+    font-size: 1.15rem;
     font-weight: bold;
     padding-top: 20px;
     padding-bottom: 20px;
-    padding-left: 50px;
+    text-decoration: none;
   }
   /* 자식의 position이 absolute일 때 자식을 영역 안에 가두어 준다 */
   .c-side-bar > ul > li {
     position: relative;
   }
   /* 모든 메뉴가 마우스 인식 시 반응 */
-  .c-side-bar ul > li:hover > a {
+
+  .c-side-bar ul > li> a:hover {
     background-color: #2473bd;
     border-bottom: 1px solid #2473bd;
+
+
+  }
+  .c-side-bar ul{
+    padding-left: 0;
+    text-align: center;
+    
   }
   /* 사이드바 너비의 80%만큼 왼쪽으로 이동 */
   .c-side-bar {
-    border-radius: 20px;
+    /* border-radius: 20px; */
     transform: translate(calc(var(--side-bar-width) * -0.8), 0);  /* X축 이동, Y축 고정 */
     transition: .5s;
+    overflow-y: auto;
+  }
+
+  .c-side-bar::-webkit-scrollbar{
+    display: none;
+
   }
   
   /* 마우스 인식 시 원래의 위치로 이동 */
@@ -208,12 +189,12 @@ body {
   .GrayCircle {
     /*width: var(--circle-radius); /* Use the CSS variable for the width and height 
     height: var(--circle-radius);*/
-    width : 80px;
-    height : 80px;
+    width : 50px;
+    height : 50px;
     background-color: rgb(131, 131, 134);
     border-radius: 50%;
     margin-left: 40px; 
-  }
+    margin-right: 20px;
   
   .GrayBox {
     height: 100px;
@@ -225,6 +206,11 @@ body {
   .GrayBox button {
     margin-right: 10px;
   }
+
+  .heartbutton{
+    margin-top: 22px;
+  }
+
   /*
   @media (max-width: 768px) {
     /* For screen sizes up to 768px, set the GrayBox width to 50% of the container 
@@ -240,9 +226,12 @@ body {
     }
   }*/
   table {
-    border-collapse: collapse;
-  }
+
+    border-collapse: collapse; 
   
+    margin: 0 auto
+  }
+ 
   tr {
     border-bottom: 10px solid black;
   }

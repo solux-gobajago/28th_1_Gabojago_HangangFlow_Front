@@ -1,3 +1,12 @@
+import './community.css';
+import React, { useState } from 'react';
+import { Form, FormControl, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
+import {HeartOutlined, HeartFilled} from '@ant-design/icons';
+import './style.css'
+
+/*
 import axios from 'axios';
 import './community.css';
 import { useEffect } from 'react';
@@ -13,7 +22,7 @@ import heart from './heart.png';
 import fullheart from './fullheart.png';
 import {HeartOutlined, HeartFilled} from '@ant-design/icons';
 import './style.css'
-
+*/
 class LikeButton extends React.Component {
   state = {
     isChecked: false,
@@ -45,7 +54,8 @@ class LikeButton extends React.Component {
             //꽉차있는 하트를 return
             <HeartOutlined className="heartbutton" onClick={this.onClick} />
           )}
-          <h3>{this.state.notice}</h3>
+
+          <h3 id="text">{this.state.notice}</h3>
           &nbsp; {/* Space between buttons */}
           &nbsp; {/* Space between buttons */}
           &nbsp; {/* Space between buttons */}
@@ -60,37 +70,23 @@ class LikeButton extends React.Component {
   }
 }
 
-
-/*
-function GrayCircleWithBox() {
-  return (
-    <div className="GrayCircleWrapper">
-      <div className="GrayCircle"></div>
-      <div className="GrayBox"></div>
-    </div>
-  );
-}*/
-
-function Nav() {
-  return (
-    <div className='c-navigator'>
-      <nav className='c-nav'>
-        <span className='buttons'>
-          <Link to="/login">
-            <button type="button" className="btn btn-outline-light">lOGIN</button>
-          </Link>
-          {' '} {/* Add a regular space between the buttons */}
-          <Link to="/community">
-          <button type="button" className="btn btn-outline-light">COMMUNITY</button>
-          </Link>
-        </span>
+function Nav(){
+  return(
+    <div className='navigator'>
+      <nav className='nav' >
+        <div className='buttons'>
+          <Link to="/" id='homebutton'>HG FLOW </Link>
+          <Link to="/login" id='loginbutton'> </Link>
+          <Link to="/community" id='communitybutton'> Community </Link>
+        </div>
       </nav>
     </div>
   );
 }
 
 
-function Sidebar(){
+function Sidebari(){
+
   return(
     <aside className="c-side-bar">
         <ul>
@@ -103,38 +99,39 @@ function Sidebar(){
               <i className="fa-solid fa-cat"></i> menu1
         </a>*/}
 
-            <a href="#">menu1</a>
+            <a href="#">광나루한강공원</a>
           </li>
           <li>
-            <a href="#">menu2</a>
+            <a href="#">강서한강공원</a>
           </li>
           <li>
-            <a href="#">menu3</a>
+            <a href="#">난지한강공원</a>
           </li>
           <li>
-            <a href="#">menu4</a>
+            <a href="#">뚝섬한강공원</a>
           </li>
           <li>
-            <a href="#">menu5</a>
+            <a href="#">망원한강공원</a>
           </li>
           <li>
-            <a href="#">menu6</a>
+            <a href="#">반포한강공원</a>
           </li>
           <li>
-            <a href="#">menu7</a>
+            <a href="#">양화한강공원</a>
           </li>
           <li>
-            <a href="#">menu7</a>
+            <a href="#">여의도한강공원</a>
           </li>
           <li>
-            <a href="#">menu7</a>
+            <a href="#">이촌한강공원</a>
           </li>
           <li>
-            <a href="#">menu7</a>
+            <a href="#">잠실한강공원</a>
           </li>
           <li>
-            <a href="#">menu7</a>
+            <a href="#">잠원한강공원</a>
           </li>
+        
         </ul>
       </aside>
 
@@ -190,6 +187,7 @@ function GrayCircleWithBox({ num }) {
       </table>
     </div>
   );
+
 }
 
 
@@ -256,15 +254,18 @@ function GrayCircleWithBox({refreshAfterBoxList},{num}) {
 }
 */
 
-function App(){
+function CmApp(){
+
     return(
     <div className="c-main-container">
       <Nav></Nav>
       <div className="c-content-container">
-        <Sidebar></Sidebar>
+
+        <Sidebari></Sidebari>
       <GrayCircleWithBox></GrayCircleWithBox>
       </div>
     </div>
     );
 }
-export default App;
+export default CmApp;
+

@@ -83,38 +83,39 @@ function Sidebari(){
               <i className="fa-solid fa-cat"></i> menu1
         </a>*/}
 
-            <a href="#">menu1</a>
+            <a href="#">광나루한강공원</a>
           </li>
           <li>
-            <a href="#">menu2</a>
+            <a href="#">강서한강공원</a>
           </li>
           <li>
-            <a href="#">menu3</a>
+            <a href="#">난지한강공원</a>
           </li>
           <li>
-            <a href="#">menu4</a>
+            <a href="#">뚝섬한강공원</a>
           </li>
           <li>
-            <a href="#">menu5</a>
+            <a href="#">망원한강공원</a>
           </li>
           <li>
-            <a href="#">menu6</a>
+            <a href="#">반포한강공원</a>
           </li>
           <li>
-            <a href="#">menu7</a>
+            <a href="#">양화한강공원</a>
           </li>
           <li>
-            <a href="#">menu7</a>
+            <a href="#">여의도한강공원</a>
           </li>
           <li>
-            <a href="#">menu7</a>
+            <a href="#">이촌한강공원</a>
           </li>
           <li>
-            <a href="#">menu7</a>
+            <a href="#">잠실한강공원</a>
           </li>
           <li>
-            <a href="#">menu7</a>
+            <a href="#">잠원한강공원</a>
           </li>
+          
         </ul>
       </aside>
 

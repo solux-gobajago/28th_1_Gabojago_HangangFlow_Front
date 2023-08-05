@@ -29,11 +29,13 @@ function Sidebar() {
     if (!selected.includes(value)){
       setSelected([...selected, value]);
       event.target.style.backgroundColor="grey";
+      event.target.classList.add('selected'); // Add the 'selected' class
     }
 
     else{
       setSelected(selected.filter(item => item !== value));
       event.target.style.backgroundColor="rgba(234, 234, 234, 0.9)";
+      event.target.classList.remove('selected'); // Remove the 'selected' class
     }
     
     //console.log(selected.length); // Just to verify the selected values, you can remove this line later
@@ -79,10 +81,65 @@ function Sidebar() {
       </div>
       
       <div className='app-print-selected'>
-        <h2>{selected+"...에 맞는 한강공원 검색 결과"}</h2>
+        <h2>{(
+      <>
+        {selected.map((keyword) => (
+          <SelectedKeyword key={keyword} keyword={keyword} />
+        ))}
+        ...에 맞는 한강공원 검색 결과
+      </>
+    ) }</h2>
       </div>
     </div>
   );
+}
+
+function SelectedKeyword({ keyword }) {
+
+  const keywordColors = [
+    { keyword: '운동', color: 'pink' },
+    { keyword: '산책', color: 'pink' },
+    { keyword: '자전거', color: 'pink' },
+    { keyword: '라이딩', color: 'pink' },
+    { keyword: '야구장',color: 'pink' },
+    { keyword: '수영장',color: 'pink' },
+    { keyword: '드론', color: 'lightblue' },
+    { keyword: '페스티벌', color: 'orange' },
+    { keyword: '콘서트', color: 'orange' },
+    { keyword: '불꽃놀이', color: 'orange' },
+    { keyword: '야경', color: 'orange' },
+    { keyword: '주차장', color: 'purple' },
+    { keyword: '화장실', color: 'purple' },
+    { keyword: '대중교통', color: 'purple' },
+    { keyword: '편의점', color: 'purple' },
+    { keyword: '데이트', color: 'lightgreen' },
+    { keyword: '피크닉', color: 'lightgreen' },
+    { keyword: '돗자리', color: 'lightgreen' },
+    { keyword: '나들이', color: 'lightgreen' },
+    { keyword: '휴식', color: 'lightgreen' },
+    { keyword: '깨끗', color: 'lightgreen' },
+    { keyword: '자연', color: 'lightgreen' },
+    { keyword: '습지', color: 'lightgreen' },
+    { keyword: '치킨', color: 'yellow' },
+    { keyword: '카페', color: 'purple' },
+    { keyword: '라면', color: 'yellow' }
+
+  ];
+  
+  // 색상 정보를 찾아옵니다.
+  const keywordColor = keywordColors.find(item => item.keyword === keyword);
+  // 색상이 없는 경우 기본 색상을 지정합니다.
+  const backgroundColor = keywordColor ? keywordColor.color : 'grey';
+  
+  const selectedStyle = {
+    backgroundColor,
+    padding: '5px 10px',
+    borderRadius: '5px',
+    color: 'white',
+    marginRight: '5px',
+  };
+
+  return <span style={selectedStyle}>{keyword}</span>;
 }
 
 

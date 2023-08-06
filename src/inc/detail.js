@@ -196,7 +196,7 @@ function Detail() {
                   : "Loading..."}
               </p>
             </div>
-            <div id="map" style={{ width: "1000px", height: "400px", margin: "0 auto", marginTop: "50px" }}></div>
+            <div id="map" style={{ width: "1000px", height: "500px", margin: "0 auto", marginTop: "50px" }}></div>
           </div>
         </div>
               ) : (

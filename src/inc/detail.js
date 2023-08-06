@@ -14,6 +14,7 @@ function Nav() {
           <Link to="/" id='homebutton'>HG FLOW </Link>
           <Link to="/login" id='loginbutton'> LOG IN </Link>
           <Link to="/community" id='communitybutton'>Community</Link>
+          <Link to="/mypage" id='mypagebutton'> MY PAGE </Link>
         </span>
       </nav>
     </div>

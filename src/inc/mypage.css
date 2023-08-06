@@ -1,0 +1,38 @@
+.mypage-box{
+    width: 100%;
+    margin-top: 60px;
+    height: 91vh;
+}
+
+.mypage-box .myinformation{
+    width: 50%;
+    height: 30%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.mypage-box .myinformation #myimage{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    background-color: aliceblue;
+    position: absolute;
+    transform: translate(20%,10%);
+}
+.mypage-box .bookmark{
+    width: 50%;
+    height: 30%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.mypage-box .liked{
+    width: 50%;
+    height: 30%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin: 0 auto;
+}

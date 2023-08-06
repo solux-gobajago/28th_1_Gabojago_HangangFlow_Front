@@ -35,7 +35,7 @@ body::-webkit-scrollbar{
     color: white;
     text-decoration: none;
     position: absolute;
-    transform: translate(-120%,-40%);
+    transform: translate(-225%,-40%);
     transition: background-color 0.2s, transform 0.2s; 
   }
 
@@ -55,7 +55,7 @@ body::-webkit-scrollbar{
     color: white;
     text-decoration: none;
     position: absolute;
-    transform: translate(-230%,-40%);
+    transform: translate(-340%,-40%);
     transition: background-color 0.2s, transform 0.2s; 
   }
 
@@ -64,6 +64,23 @@ body::-webkit-scrollbar{
     border-color: rgba(114, 114, 114, 0);
   }
 
+  #mypagebutton{
+    width: 100px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 20px;
+    border-color: rgba(255,255,255,0.2);
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    position: absolute;
+    transform: translate(-110%,-40%);
+    transition: background-color 0.2s, transform 0.2s; 
+  }
+  #mypagebutton:hover{
+    background-color: rgba(114, 114, 114, 0.2);
+    border-color: rgba(114, 114, 114, 0);
+  }
   #spinner{
     transform:translate(440%,190%);
   }

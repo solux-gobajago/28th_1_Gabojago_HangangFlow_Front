@@ -21,13 +21,27 @@ function Nav() {
       </nav>
     </div>
   );
-}
+};
+{/* 시설 안내 탭 속 요소들 출력 */}
+const DGrayCircleWithBox = ({ num }) => {
+  return (
+    <tr style={{ borderBottom: '1px solid black' }}>
+    <td>
+      <div className="d-GrayBox">
+        {/* Add the image here */}
+      </div>
+    </td>
+    </tr>
+  );
+};
 
 function Detail() {
   const location = useLocation();
 
   const [responseData, setResponseData] = useState(null);
   const park_name = location.state.parkTitle;
+  const num = 9; // 원하는 num 값 설정
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -145,7 +159,7 @@ function Detail() {
                       objectFit: 'cover',
                       width: '100%',
                       height: '100%',
-                      position: 'absolute',
+                      position: 'relative',
                       top: 0,
                       left: 0,
                       opacity: index === currentImageIndex ? 1 : 0,
@@ -157,43 +171,58 @@ function Detail() {
             </div>
             <div id="represent">rep</div>
             <div className='app-main-text'>
-            <p>
-      {responseData
-        ? responseData.documents.map((item, index) => (
-          <span key={index} className="inline-container">
-            <Bookmark />
-            <br></br>
-            <span>{item.place_name}</span>
-          </span>
-          ))
-        : "Loading..."}
-    </p>
-    <p>
-      {responseData
-        ? responseData.documents.map((item, index) => (
-            <span key={index}>{item.address_name}</span>
-          ))
-        : "Loading..."}
-    </p>
-    <p>
-      {responseData
-        ? responseData.documents.map((item, index) => (
-            <span key={index}>{item.phone}</span>
-          ))
-        : "Loading..."}
-    </p>
+              <p>
+                {responseData
+                  ? responseData.documents.map((item, index) => (
+                    <span key={index} className="inline-container">
+                      <Bookmark />
+                      <br></br>
+                      <span>{item.place_name}</span>
+                    </span>
+                    ))
+                  : "Loading..."}
+              </p>
+              <p>
+                {responseData
+                  ? responseData.documents.map((item, index) => (
+                      <span key={index}>{item.address_name}</span>
+                    ))
+                  : "Loading..."}
+              </p>
+              <p>
+                {responseData
+                  ? responseData.documents.map((item, index) => (
+                      <span key={index}>{item.phone}</span>
+                    ))
+                  : "Loading..."}
+              </p>
             </div>
-            <div id="map" style={{ width: "1000px", height: "400px", margin: "0 auto", marginTop: "50px" }}></div>
+            <div id="map" style={{ width: "1000px", height: "500px", margin: "0 auto", marginTop: "50px" }}></div>
           </div>
         </div>
-      ) : (
+              ) : (
         <div>
           <div style={{ width: "100%", height: "100vh", backgroundColor: "rgba(75,75,75,0.4)" }}>
-            {/* <img src={spinner} id="spinner" style={{ position: "absolute" }} width="10%" alt="Loading" /> */}
-          </div>
+                    {/* <img src={spinner} id="spinner" style={{ position: "absolute" }} width="10%" alt="Loading" /> */}
         </div>
+      </div>
       )}
-    </div>
+      {/*지도 밑 시설 안내 탭 */}      
+      <div className="d-content-container">
+        <div className="d-GrayCircleWrapper">
+          <table>
+            <tbody>
+              {/* num 수에 맞게 DGrayCircleWithBox 컴포넌트를 반복하여 출력 */}
+              {Array.from({ length: num }).map((_, index) => (
+                <React.Fragment key={index}>
+                  <DGrayCircleWithBox num={num} />
+                </React.Fragment>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+</div>
   );
 };
 

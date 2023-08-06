@@ -7,6 +7,108 @@ display:none;
 
 } 
 
+  .nav {
+    margin-left: auto;
+  }
+
+  #homebutton{
+    width: 100px;
+    border-radius: 20px;
+    border-color: rgba(255,255,255,0);
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    position: absolute;
+    transform: translate(-1500%,-40%);
+    transition: background-color 0.2s, transform 0.2s; 
+  }
+
+
+  #loginbutton{
+    width: 100px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 20px;
+    border-color: rgba(255,255,255,0.2);
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    position: absolute;
+    transform: translate(-225%,-40%);
+    transition: background-color 0.2s, transform 0.2s; 
+  }
+
+  #loginbutton:hover{
+    background-color: rgba(114, 114, 114, 0.2);
+    border-color: rgba(114, 114, 114, 0);
+  }
+
+  
+  #communitybutton{
+    width: 100px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 20px;
+    border-color: rgba(255,255,255,0.2);
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    position: absolute;
+    transform: translate(-340%,-40%);
+    transition: background-color 0.2s, transform 0.2s; 
+  }
+
+  #communitybutton:hover{
+    background-color: rgba(114, 114, 114, 0.2);
+    border-color: rgba(114, 114, 114, 0);
+  }
+
+  #mypagebutton{
+    width: 100px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 20px;
+    border-color: rgba(255,255,255,0.2);
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    position: absolute;
+    transform: translate(-110%,-40%);
+    transition: background-color 0.2s, transform 0.2s; 
+  }
+  #mypagebutton:hover{
+    background-color: rgba(114, 114, 114, 0.2);
+    border-color: rgba(114, 114, 114, 0);
+  }
+  #spinner{
+    transform:translate(440%,190%);
+  }
+  .App {
+    margin-top: 60px;
+    text-align: center;
+    margin-bottom: 200px;
+  }
+  #slider{
+    height: 300px;
+    background-color: aliceblue;
+  }
+  .slider-button {
+    position: absolute;
+    top:40%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    
+    color: white;
+    font-size: 60px;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  .slider-button-prev {
+    left: 10px; /* Adjust the distance from the left edge */
+
 
 .nav {
   margin-left: auto;

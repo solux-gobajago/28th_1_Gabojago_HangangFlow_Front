@@ -1,18 +1,56 @@
 import React, { useEffect, useState} from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, Link } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 import axios from 'axios';
 import './App.css';
+import './index.css';
+import Mypage from './inc/mypage.js';
+import Login from './inc/login.js';
+import Signup from './inc/signup.js';
 import Detail from './inc/detail.js';
-import Community from './inc/community.js';
+import CmApp from './inc/community.js';
 
 function Nav(){
   return(
     <div className='navigator'>
       <nav className='nav' >
         <div className='buttons'>
-          <Link to="/" id='homebutton'>HG FLOW </Link>
-          <Link to="/login" id='loginbutton'> LOG IN </Link>
-          <Link to="/community" id='communitybutton'> Community </Link>
+          <CSSTransition
+            in={true}
+            appear={true}
+            timeout={500}
+            classNames="button"
+            unmountOnExit
+          >
+            <Link to="/" id='homebutton'>HG FLOW </Link>
+          </CSSTransition>
+          <CSSTransition
+            in={true}
+            appear={true}
+            timeout={500}
+            classNames="button"
+            unmountOnExit
+          >
+            <Link to="/login" id='loginbutton'> LOG IN </Link>
+          </CSSTransition>
+          <CSSTransition
+            in={true}
+            appear={true}
+            timeout={500}
+            classNames="button"
+            unmountOnExit
+          >
+            <Link to="/community" id='communitybutton'> Community </Link>
+          </CSSTransition>
+          <CSSTransition
+            in={true}
+            appear={true}
+            timeout={500}
+            classNames="button"
+            unmountOnExit
+          >
+            <Link to="/mypage" id='mypagebutton'> MY PAGE </Link>
+          </CSSTransition>
         </div>
       </nav>
     </div>
@@ -190,18 +228,19 @@ function Parks() {
 }
 
 function MainApp(){
-    return(
-    <div className="app-main-container">
-      <Nav></Nav>
-      <div className="app-content-container">
-      
-        <Sidebar></Sidebar>
-        <div className="app-container">
-        <Parks></Parks>
-        </div>
+  return(
+  <div className="app-main-container">
+    <Nav></Nav>
+    <div className="app-content-container">
+    
+      <Sidebar></Sidebar>
+      <div className="app-container">
+      <Parks></Parks>
       </div>
     </div>
-    
-    );
+  </div>
+  
+  );
 }
+
 export default MainApp;

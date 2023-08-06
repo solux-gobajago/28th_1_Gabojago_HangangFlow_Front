@@ -25,7 +25,7 @@ function Home() {
             <div>
               <span className='signin-button'>SIGN IN</span>
             </div>
-            <Link to='/signup'>Join us?</Link>
+            <Link to='/signup' style={{marginLeft:'130px'}}>Join us?</Link>
           </div>
         </div>
         <button className='close-button'>

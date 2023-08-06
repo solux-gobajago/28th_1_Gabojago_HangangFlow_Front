@@ -120,6 +120,8 @@ function Sidebari(){
 
   );
 }
+
+{/*이미 게시되어있는 comment 박스를 출력 */}
 function GrayCircleWithBox({ num }) {
   num = 8;
   function rowComment() {
@@ -147,7 +149,7 @@ function GrayCircleWithBox({ num }) {
     <div className="GrayCircleWrapper">
       <table>
         <tbody>
-          {/* post 버튼 출력 */}
+          {/* 글 작성하는 comment 박스 */}
           <tr style={{ borderBottom: '1px solid black' }}>
             <td>
               <div className="GrayCircle"></div>

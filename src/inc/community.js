@@ -1,4 +1,3 @@
-
 import './community.css';
 
 import React, { useState } from 'react';

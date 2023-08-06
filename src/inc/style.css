@@ -2,19 +2,19 @@
     cursor:pointer;
     transition: transform 300ms ease;
     font-size: 20px;
-  }
-  .red{
+}
+.red{
   color:red;
   }
-  h3 #text{     /* 기존 h3 */
+  h3 {     /* 기존 h3 */
   height: 20px;
   font-size: 20px;
-  }
-  .heartbutton:hover{
+}
+.heartbutton:hover{
     transform: scale(1.1);
-  }
-  .icons-list {
+}
+.icons-list {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
+}

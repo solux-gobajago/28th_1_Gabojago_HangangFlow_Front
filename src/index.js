@@ -10,8 +10,7 @@ import Signup from './inc/signup.js';
 import Detail from './inc/detail.js';
 import CmApp from './inc/community.js';
 import reportWebVitals from './reportWebVitals';
-
-
+import { AnimatePresence } from "framer-motion";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,6 +27,4 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>
 );
-
-
 reportWebVitals();

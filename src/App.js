@@ -20,7 +20,7 @@ function Nav(){
 }
 
 function Sidebar() {
-  const [selected, setSelected] = React.useState([]);
+  const [selected, setSelected] = React.useState([]); //selected 배열에 클릭한 키워드 저장됨
   
   
   const clickkeyword = (event) => {
@@ -29,13 +29,13 @@ function Sidebar() {
     if (!selected.includes(value)){
       setSelected([...selected, value]);
       event.target.style.backgroundColor="grey";
-      event.target.classList.add('selected'); // Add the 'selected' class
+      event.target.classList.add('selected'); // selected 배열에 키워드 추가
     }
 
     else{
       setSelected(selected.filter(item => item !== value));
       event.target.style.backgroundColor="rgba(234, 234, 234, 0.9)";
-      event.target.classList.remove('selected'); // Remove the 'selected' class
+      event.target.classList.remove('selected'); //  selected 배열에 키워드 삭제
     }
     
     //console.log(selected.length); // Just to verify the selected values, you can remove this line later
@@ -86,7 +86,7 @@ function Sidebar() {
         {selected.map((keyword) => (
           <SelectedKeyword key={keyword} keyword={keyword} />
         ))}
-        ...에 맞는 한강공원 검색 결과
+        에 맞는 한강공원 검색 결과
       </>
     ) }</h2>
       </div>

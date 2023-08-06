@@ -126,22 +126,34 @@ function GrayCircleWithBox({ num }) {
   num = 8;
   function rowComment() {
     return (
-      <tr style={{ borderBottom: '1px solid black' }}>
-        <td>
-          <div className="GrayCircle"></div>
-        </td>
-        <td>
-          <div className="GrayBox">
-            {/* Add the image here */}
-          </div>
-        </td>
-        <td>
-          <button type="button" className="btn btn-light" padding="10px">수정</button>
-          &nbsp; {/* Space between buttons */}
-          <button type="button" className="btn btn-light">삭제</button>
-          <LikeButton></LikeButton>
-        </td>
-      </tr>
+      <>
+        <tr style={{ borderTop: '1px solid black' }}>
+          <td>
+            <div className="GrayCircle"></div>
+          </td>
+          <td>
+            <div className="GrayBox">
+              {/* Add the image here */}
+            </div>
+          </td>
+          <td style={{ display: 'inline-table', justifyContent: 'flex-end' }}>
+            <LikeButton></LikeButton>
+          </td>
+        </tr>
+        <tr>
+         
+          <td></td>
+          <td style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <button type="button" className="btn btn-outline-dark" style={{ margin: '4px', marginTop: '0px' }}>
+              수정
+            </button>
+            <button type="button" className="btn btn-outline-danger"  style={{ margin: '4px', marginTop: '4px' }}>
+              삭제
+            </button>
+         
+          </td>
+        </tr>
+      </>
     );
   }
 
@@ -158,9 +170,9 @@ function GrayCircleWithBox({ num }) {
               <div className="GrayBox"></div>
             </td>
             <td>
-              <Button variant="light">POST</Button>
-              &nbsp; {/* Space between buttons */}
-              <button type="button" className="btn btn-outline-dark">Dark</button>
+
+              <button type="button" className="btn btn-outline-dark" style={{ margin: '4px', marginTop: '4px' }}>POST</button>
+              <button type="button" class="btn btn-secondary" disabled style={{ margin: '4px', marginTop: '4px' }}>Login</button>
             </td>
           </tr>
 

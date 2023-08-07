@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './signup.css';
+import axios from 'axios';
 
 function Signup() {
   const navigate = useNavigate();
 
   const [userId, setUserId] = useState('');
   const [email, setEmail] = useState('');
+  const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [userNameErrorMessage, setUserNameErrorMessage] = useState('');
@@ -49,17 +51,30 @@ function Signup() {
     }
   };
 
-  const handleSignUp = () => {
-    if (password !== confirmPassword) {
-      setPasswordMatchError('Passwords do not match.');
-      return;
-    } else {
-      setPasswordMatchError('Passwords match.');
+  const handleSignUp = async () => {
+    try {
+      console.log("check---- handleLogin");
+      const response = await axios.post('/api/register', {
+        userId: userId,
+        password: password,
+        passwordCheck: confirmPassword,
+        email: email,
+        nickname: nickname
+
+      });
+
+      console.log("check------------------", userId);
+      console.log("check--------------", password);
+
+   
+      console.log(response.data); 
+    } catch (error) {
+      console.error('회원가입 실패:', error);
     }
 
     // 로그인
     // 입력한 정보들을 DB에 넘기기
-    alert('Sign up successful!');
+  
   };
 
   return (
@@ -77,6 +92,9 @@ function Signup() {
             <div className={userNameErrorMessage === 'Please enter a valid ID.' ? 'error-message' : "success-message"}>{userNameErrorMessage}</div>
           </div>
           <div className='signup'>
+            <span>Nickname</span> <input type='text' value={nickname} onChange={(e) => setNickname(e.target.value)} />
+          </div>
+          <div className='signup'>
             <span>E-mail</span> <input type='text' value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
 
@@ -91,7 +109,7 @@ function Signup() {
             </div>
           </div>
 
-          <button className='signup-button' onClick={handleSignUp} disabled={password !== confirmPassword || email=='' || password=='' || userId==''}>
+          <button className='signup-button' onClick={handleSignUp} disabled={password !== confirmPassword || nickname=='' || email=='' || password=='' || userId==''}>
             Sign Up
           </button>
         

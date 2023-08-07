@@ -63,25 +63,41 @@ function Sidebar() {
   
   const clickkeyword = (event) => {
     const value = event.target.getAttribute('value');
-    
+    console.log("check-------------value", value);
     if (!selected.includes(value)){
       setSelected([...selected, value]);
+      console.log("check1--------------");
       event.target.style.backgroundColor="grey";
       event.target.classList.add('selected'); // selected 배열에 키워드 추가
     }
 
     else{
+      console.log("check---------------2")
       setSelected(selected.filter(item => item !== value));
       event.target.style.backgroundColor="rgba(234, 234, 234, 0.9)";
       event.target.classList.remove('selected'); //  selected 배열에 키워드 삭제
     }
-    
+    console.log(selected);
     //console.log(selected.length); // Just to verify the selected values, you can remove this line later
 
   };
 
-  const temporal = (event) => {
-    event.target.style.backgroundColor="rgb(231, 181, 181)";
+  const sendkeyword = async() => {
+    
+    //flask 로 selected 배열 보내기
+    try {
+      console.log("check------------------", selected);
+      const response = await axios.post('/data/park_keywords', {
+        keywords: selected
+      });
+
+      
+
+      // 서버로부터 온 응답 처리
+      console.log(response.data); //전송에 성공했습니다
+    } catch (error) {
+      console.error('키워드 전송 실패:', error);
+    }
   };
 
   return (
@@ -116,6 +132,7 @@ function Sidebar() {
           <span id='keyword' value='라면' onClick={clickkeyword}>라면</span>
 
         </div>
+        <button onClick={sendkeyword}>SEND</button>
       </div>
       
       <div className='app-print-selected'>
@@ -169,6 +186,7 @@ function SelectedKeyword({ keyword }) {
   // 색상이 없는 경우 기본 색상을 지정합니다.
   const backgroundColor = keywordColor ? keywordColor.color : 'grey';
   
+ 
   const selectedStyle = {
     backgroundColor,
     padding: '5px 10px',

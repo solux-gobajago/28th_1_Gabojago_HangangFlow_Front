@@ -3,7 +3,12 @@ import { BrowserRouter, Route, useLocation, Link } from 'react-router-dom';
 import axios from 'axios';
 import './detail.css';
 import spinner from './Spin-0.6s-200px.gif';
+
 import rep from './parkimage/강서한강공원1.jpg';
+
+import filledstar from "./filledstar.png";
+import unfilledstar from "./unfilledstar.png";
+
 
 const { kakao } = window;
 
@@ -75,6 +80,39 @@ function Detail() {
     setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
 
+  const Bookmark = () => {
+    const [isFavorite, setIsFavorite] = useState(false);
+  
+    const handleBookmarkToggle = () => {
+      setIsFavorite((prevState) => !prevState);
+    };
+  
+    return (
+      <div className="mt-4">
+        <span className="rating-star">
+          <span
+            className="Unfavorites"
+            onClick={handleBookmarkToggle}
+            style={{ display: 'inline', cursor: 'pointer' }}
+          >
+            {isFavorite ? (
+              <img
+                src={filledstar}
+                alt="즐겨찾기 해제"
+                style={{ width: '24px', height: '24px' }}
+              />
+            ) : (
+              <img
+                src={unfilledstar}
+                alt="즐겨찾기 추가"
+                style={{ width: '20px', height: '20px' }}
+              />
+            )}
+          </span>
+        </span>
+      </div>
+    );
+  };
   return (
     <div className='detail'>
       {responseData ? (
@@ -125,7 +163,13 @@ function Detail() {
             <p>
       {responseData
         ? responseData.documents.map((item, index) => (
-            <span key={index} id='park-name'>{item.place_name}</span>
+
+            <span key={index} className="inline-container">
+            <Bookmark />
+            <br></br>
+            <span>{item.place_name}</span>
+          </span>
+
           ))
         : "Loading..."}
     </p>

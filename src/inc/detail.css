@@ -124,8 +124,6 @@ display:none;
   border-radius: 100%;
   border-style: solid;
   border-color: white;
-
- 
   position: absolute;
   transform: translate(-50%, -50%);
 }
@@ -134,7 +132,7 @@ display:none;
 }
 .app-main-text{
   margin: 0 auto;
-  margin-top: 180px;
+  margin-top: 120px;
 }
 
 #park-name{

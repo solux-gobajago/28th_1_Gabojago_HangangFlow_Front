@@ -167,7 +167,7 @@ function Detail() {
             <span key={index} className="inline-container">
             <Bookmark />
             <br></br>
-            <span>{item.place_name}</span>
+            <span key={index} id='park-name'>{item.place_name}</span>
           </span>
 
           ))

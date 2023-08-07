@@ -45,7 +45,7 @@
   height: 100px;
   border-radius: 20px;
   position: absolute;
-  transform: translate(370%,-100%);
+  transform: translate(370%,-150%);
   display: flex;
   align-items: center;
   font-size: 21px;

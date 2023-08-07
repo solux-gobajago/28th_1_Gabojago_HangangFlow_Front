@@ -137,7 +137,7 @@ function Sidebar() {
           <span id='keyword' value='라면' onClick={clickkeyword}>라면</span>
 
         </div>
-        <button onClick={sendkeyword} disabled={selected.length>3}>SEND</button>
+        <button id='sendbutton' onClick={sendkeyword} disabled={selected.length>3}>SEND</button>
       </div>
       
       <div className='app-print-selected'>

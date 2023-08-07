@@ -1,9 +1,10 @@
 import React, { useEffect, useState} from 'react';
-import { BrowserRouter, Routes, Route, useNavigate, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate, Link, json, Form } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import axios from 'axios';
 import './App.css';
 import './index.css';
+
 import Mypage from './inc/mypage.js';
 import Login from './inc/login.js';
 import Signup from './inc/signup.js';
@@ -86,15 +87,19 @@ function Sidebar() {
     
     //flask 로 selected 배열 보내기
     try {
-      console.log("check------------------", selected);
-      const response = await axios.post('/data/park_keywords', {
-        keywords: selected
-      });
+      // console.log(selected.length);
+      // console.log(JSON.stringify(selected));
+      // console.log("check------------------배열", JSON.stringify(selected));
+    
+      const  data  = { keywords : selected};
+      console.log("check data", data);
+  
+      const response = await axios.post('/data/keywords', data);
+    
 
-      
+      console.log("check------response", response);
 
-      // 서버로부터 온 응답 처리
-      console.log(response.data); //전송에 성공했습니다
+  
     } catch (error) {
       console.error('키워드 전송 실패:', error);
     }
@@ -132,7 +137,7 @@ function Sidebar() {
           <span id='keyword' value='라면' onClick={clickkeyword}>라면</span>
 
         </div>
-        <button onClick={sendkeyword}>SEND</button>
+        <button onClick={sendkeyword} disabled={selected.length>3}>SEND</button>
       </div>
       
       <div className='app-print-selected'>

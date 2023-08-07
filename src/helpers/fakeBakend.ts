@@ -9,7 +9,10 @@ import {
 } from './apiInterface';
 import * as url from './url';
 
+
 const api = new APIClient();
+
+// export const sendParkKeyword = async ()
 
 export const login = async (userId: string, password: string) =>
     api.create(url.POST_LOGIN, { userId: userId, password: password });

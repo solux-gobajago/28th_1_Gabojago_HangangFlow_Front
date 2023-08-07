@@ -1,4 +1,7 @@
 const api = `/api/`;
+const data = `/data/`;
+
+// export const GET_KEYWORD = `${data}park_keywords`;
 
 export const POST_LOGIN = `${api}login`;
 // export const GET_TOKEN_CHECK = `${api}session`;

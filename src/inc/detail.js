@@ -3,8 +3,12 @@ import { BrowserRouter, Route, useLocation, Link } from 'react-router-dom';
 import axios from 'axios';
 import './detail.css';
 import spinner from './Spin-0.6s-200px.gif';
+
+import rep from './parkimage/강서한강공원1.jpg';
+
 import filledstar from "./filledstar.png";
 import unfilledstar from "./unfilledstar.png";
+
 
 const { kakao } = window;
 
@@ -63,6 +67,7 @@ function Detail() {
       });
     }
   }, [responseData]);
+
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [`${park_name}1.jpg`, `${park_name}2.jpg`, `${park_name}3.jpg`];
@@ -153,30 +158,32 @@ function Detail() {
                 ))}
               </div>
             </div>
-            <div id="represent">rep</div>
+            <img id="represent" src={rep}></img>
             <div className='app-main-text'>
             <p>
       {responseData
         ? responseData.documents.map((item, index) => (
+
             <span key={index} className="inline-container">
             <Bookmark />
             <br></br>
             <span>{item.place_name}</span>
           </span>
+
           ))
         : "Loading..."}
     </p>
     <p>
       {responseData
         ? responseData.documents.map((item, index) => (
-            <span key={index}>{item.address_name}</span>
+            <span key={index} id='park-address'>{item.address_name}</span>
           ))
         : "Loading..."}
     </p>
     <p>
       {responseData
         ? responseData.documents.map((item, index) => (
-            <span key={index}>{item.phone}</span>
+            <span key={index} id='park-phone'>{item.phone}</span>
           ))
         : "Loading..."}
     </p>

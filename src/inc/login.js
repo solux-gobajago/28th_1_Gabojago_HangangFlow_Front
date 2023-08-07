@@ -10,13 +10,17 @@ function Home() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:4000/api/login', {
+      console.log("check---- handleLogin");
+      const response = await axios.post('/api/login', {
         userId: username,
         password: password
       });
 
+      console.log("check------------------", username);
+      console.log("check--------------", password);
+
       // 서버로부터 온 응답 처리
-      console.log(response.data);
+      console.log(response.data); //로그인에 성공했습니다
     } catch (error) {
       console.error('로그인 실패:', error);
     }
@@ -50,6 +54,15 @@ function Home() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <div>
+              자동 로그인 
+            <input
+              type="checkbox"
+              id="remember-me"
+              name="remember-me"
+              
+            />
+            </div>
             <div>
               <button onClick={handleLogin} className='signin-button'>SIGN IN</button>
             </div>

@@ -1,5 +1,3 @@
-/*detail.css*/
-
 .whole-container{
   background-image: url("background3-1.jpg");
 }
@@ -8,108 +6,6 @@ body::-webkit-scrollbar{
 display:none;
 
 } 
-
-  .nav {
-    margin-left: auto;
-  }
-
-  #homebutton{
-    width: 100px;
-    border-radius: 20px;
-    border-color: rgba(255,255,255,0);
-    text-align: center;
-    color: white;
-    text-decoration: none;
-    position: absolute;
-    transform: translate(-1500%,-40%);
-    transition: background-color 0.2s, transform 0.2s; 
-  }
-
-
-  #loginbutton{
-    width: 100px;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 20px;
-    border-color: rgba(255,255,255,0.2);
-    text-align: center;
-    color: white;
-    text-decoration: none;
-    position: absolute;
-    transform: translate(-225%,-40%);
-    transition: background-color 0.2s, transform 0.2s; 
-  }
-
-  #loginbutton:hover{
-    background-color: rgba(114, 114, 114, 0.2);
-    border-color: rgba(114, 114, 114, 0);
-  }
-
-  
-  #communitybutton{
-    width: 100px;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 20px;
-    border-color: rgba(255,255,255,0.2);
-    text-align: center;
-    color: white;
-    text-decoration: none;
-    position: absolute;
-    transform: translate(-340%,-40%);
-    transition: background-color 0.2s, transform 0.2s; 
-  }
-
-  #communitybutton:hover{
-    background-color: rgba(114, 114, 114, 0.2);
-    border-color: rgba(114, 114, 114, 0);
-  }
-
-  #mypagebutton{
-    width: 100px;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 20px;
-    border-color: rgba(255,255,255,0.2);
-    text-align: center;
-    color: white;
-    text-decoration: none;
-    position: absolute;
-    transform: translate(-110%,-40%);
-    transition: background-color 0.2s, transform 0.2s; 
-  }
-  #mypagebutton:hover{
-    background-color: rgba(114, 114, 114, 0.2);
-    border-color: rgba(114, 114, 114, 0);
-  }
-  #spinner{
-    transform:translate(440%,190%);
-  }
-  .App {
-    margin-top: 60px;
-    text-align: center;
-    margin-bottom: 200px;
-  }
-  #slider{
-    height: 300px;
-    background-color: aliceblue;
-  }
-  .slider-button {
-    position: absolute;
-    top:40%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    
-    color: white;
-    font-size: 60px;
-    border: none;
-    cursor: pointer;
-    z-index: 2;
-  }
-  
-  .slider-button-prev {
-    left: 10px; /* Adjust the distance from the left edge */
 
 
 .nav {
@@ -139,7 +35,7 @@ display:none;
   color: white;
   text-decoration: none;
   position: absolute;
-  transform: translate(-120%,-40%);
+  transform: translate(-225%,-40%);
   transition: background-color 0.2s, transform 0.2s; 
 }
 
@@ -159,7 +55,7 @@ display:none;
   color: white;
   text-decoration: none;
   position: absolute;
-  transform: translate(-230%,-40%);
+  transform: translate(-340%,-40%);
   transition: background-color 0.2s, transform 0.2s; 
 }
 
@@ -168,6 +64,23 @@ display:none;
   border-color: rgba(114, 114, 114, 0);
 }
 
+#mypagebutton{
+  width: 100px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 20px;
+  border-color: rgba(255,255,255,0.2);
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  position: absolute;
+  transform: translate(-110%,-40%);
+  transition: background-color 0.2s, transform 0.2s; 
+}
+#mypagebutton:hover{
+  background-color: rgba(114, 114, 114, 0.2);
+  border-color: rgba(114, 114, 114, 0);
+}
 #spinner{
   transform:translate(440%,190%);
 }
@@ -219,38 +132,5 @@ display:none;
 }
 .app-main-text{
   margin: 0 auto;
-  margin-top: 120px;
-}
-
-/* 지도 아래 시설 안내 창 스타일 */
-/* 시설 안내 창 크기 및 스타일 */
-/* .d-content-container 위치를 조정하기 위한 스타일 */
-.d-content-container {
-  position: relative; /* 부모 요소를 기준으로 자식 요소들의 위치를 설정 */
-  width: 1000px;
-  height: 500px;
-  background-color: rgba(255, 255, 255, 0.7);
-  margin-left: 260px;
-  border-radius: 20px;
-  overflow-y: auto;
-  /*padding-top: 5px;*/
-}
-.d-content-container::-webkit-scrollbar{
-  display: none;
-  }
-/* 내부 자식 요소들을 배치하기 위한 스타일 */
-/* 시설 안내 창 속 탭 스타일 */
-.d-GrayCircleWrapper {
-  position: absolute; /* 부모(.d-content-container)를 기준으로 위치를 설정 */
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-}
-.d-GrayBox {
-  height: 100px;
-  width: 950px;
-  background-color: rgb(180, 180, 180);
-  margin: 10px;
-  margin-left: 25px;
+  margin-top: 180px;
 }

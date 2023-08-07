@@ -122,8 +122,6 @@ display:none;
   height: 190px;
   border-radius: 100%;
   border-style: solid;
-
-  background-color: rgb(92, 92, 92);
   position: absolute;
   transform: translate(350%, -50%);
 }
@@ -132,5 +130,5 @@ display:none;
 }
 .app-main-text{
   margin: 0 auto;
-  margin-top: 180px;
+  margin-top: 120px;
 }

@@ -17,9 +17,10 @@
     width: 150px;
     height: 150px;
     border-radius: 100%;
-    background-color: aliceblue;
+
     position: absolute;
     transform: translate(20%,10%);
+    background-image: url(person2.jpg);
 }
 .mypage-box .bookmark{
     width: 50%;

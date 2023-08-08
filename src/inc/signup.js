@@ -65,7 +65,8 @@ function Signup() {
 
       console.log("check------------------", userId);
       console.log("check--------------", password);
-
+      alert(nickname+"님 환영합니다. 로그인 페이지로 이동합니다.");
+      navigate(-1);
    
       console.log(response.data); 
     } catch (error) {

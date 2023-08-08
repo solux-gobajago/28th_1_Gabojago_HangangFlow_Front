@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './login.css';
 import axios from 'axios';
+import MainApp from '../App.js'; //상위
 
 function Home() {
+  const [logstate, setLogstate]=useState("logouttttt"); //로그인 상태
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -21,6 +23,11 @@ function Home() {
 
       // 서버로부터 온 응답 처리
       console.log(response.data); //로그인에 성공했습니다
+      navigate(-1);
+      alert("로그인에 성공했습니다. 메인 페이지로 돌아갑니다.");
+      setLogstate("login"); //로그인 상태로 바꾸기
+      MainApp.getelementbyID("loginbutton").innerText="qkqh";
+      
     } catch (error) {
       console.error('로그인 실패:', error);
     }
@@ -77,4 +84,5 @@ function Home() {
   );
 }
 
-export default Home;
+export default Home; // Home 컴포넌트를 default로 내보내기
+export const logstate = "LOG IN";  // logstate 변수도 내보내기

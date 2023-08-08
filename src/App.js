@@ -4,6 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 import axios from 'axios';
 import './App.css';
 import './index.css';
+import { Home, logstate } from './inc/login.js';
 
 import Mypage from './inc/mypage.js';
 import Login from './inc/login.js';
@@ -12,10 +13,7 @@ import Detail from './inc/detail.js';
 import CmApp from './inc/community.js';
 
 function Nav(props){
-  const [logstate, setLogstate]=React.useState("LOG IN");
-  // if (props==="LOG OUT"){
-  //   setLogstate("LOG OUT");
-  // }
+  
   return(
     <div className='navigator'>
       <nav className='nav' >
@@ -63,9 +61,39 @@ function Nav(props){
 }
 
 function Sidebar() {
+  
+  const navigate = useNavigate();
+
+  const View_park = React.useCallback((park) => {
+    const handleParkClick = () => {
+      navigate('/detail', { state: { parkTitle: park.parkName } });
+    };
+
+    return (
+      <div key={park.parkName} className="app-park-box" id={park.parkName} onClick={handleParkClick}>
+        <h3>{park.parkName}</h3>
+        <p style={{ marginLeft: "40px", marginBottom: "8px" }}>{park.parkAddress}</p>
+      </div>
+    );
+  }, [navigate]);
+
   const [selected, setSelected] = React.useState([]); //selected 배열에 클릭한 키워드 저장됨
   
-  
+  const [parklist, setParklist] = React.useState([]);
+
+  React.useEffect(() => {
+    const getallparks = async () => {
+      try {
+        const parkalllist = await axios.get('/api/parkInfo/parkList');
+        setParklist(parkalllist.data);
+      } catch (error) {
+        console.log("공원 전체 받아오기 실패:", error);
+      }
+    };
+
+    getallparks();
+
+  }, []);
   const clickkeyword = (event) => {
     const value = event.target.getAttribute('value');
     
@@ -119,27 +147,22 @@ function Sidebar() {
   //   }
   // };
 
-  // 체크
+  // 키워드 보내고 공원 리스트 받아오기
   const sendkeyword = async () => {
     try {
         console.log("selected-----", selected);
         const queryString = selected.map(keyword => `keyword=${encodeURIComponent(keyword)}`).join('&');
         // console.log("query-string------", queryString);
         const response = await axios.get(`/api/parkInfo?${queryString}`); // 수정된 부분
-     
+        // console.log("check response", response);
         console.log("parklist-------", response.data);
+        setParklist(response.data);
     } catch (error) {
         console.error('키워드 전송 실패:', error);
     }
 };
 
-  const getselectedparks = async () => {
-    try {
-      
-    } catch (error) {
-      console.log("공원 리스트 받아오기 실패:", error);
-    }
-  };
+  
 
   
 
@@ -189,6 +212,12 @@ function Sidebar() {
       </>
     ) }</h2>
       </div>
+      <div className="app-container">
+      <div className="app-parks-container">
+      <div id="app-parks-container">
+        {parklist.map(park => View_park(park))}
+      </div>
+    </div></div>
         {/* 기존의 Parks 자리 */}
         {/* <Parks props={parkalllist}/> */}
         
@@ -274,30 +303,30 @@ function Parks(props) {
 }
 
 function MainApp() {
-  const [parklist, setParklist] = React.useState([]);
+  // const [parklist, setParklist] = React.useState([]);
 
-  React.useEffect(() => {
-    const getallparks = async () => {
-      try {
-        const parkalllist = await axios.get('/api/parkInfo/parkList');
-        setParklist(parkalllist.data);
-      } catch (error) {
-        console.log("공원 전체 받아오기 실패:", error);
-      }
-    };
+  // React.useEffect(() => {
+  //   const getallparks = async () => {
+  //     try {
+  //       const parkalllist = await axios.get('/api/parkInfo/parkList');
+  //       setParklist(parkalllist.data);
+  //     } catch (error) {
+  //       console.log("공원 전체 받아오기 실패:", error);
+  //     }
+  //   };
 
-    getallparks();
+  //   getallparks();
 
-  }, []);
+  // }, []);
 
   return (
     <div className="app-main-container">
       <Nav></Nav>
       <div className="app-content-container">
         <Sidebar></Sidebar>
-        <div className="app-container">
+        {/* <div className="app-container">
           <Parks parklist={parklist}></Parks>
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -305,3 +334,4 @@ function MainApp() {
 
 
 export default MainApp;
+

@@ -35,7 +35,7 @@ display:none;
   color: white;
   text-decoration: none;
   position: absolute;
-  transform: translate(-225%,-40%);
+  transform: translate(-450%,-40%);
   transition: background-color 0.2s, transform 0.2s; 
 }
 

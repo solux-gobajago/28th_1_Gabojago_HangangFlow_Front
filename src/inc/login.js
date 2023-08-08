@@ -21,6 +21,8 @@ function Home() {
 
       // 서버로부터 온 응답 처리
       console.log(response.data); //로그인에 성공했습니다
+      alert("로그인에 성공했습니다");
+      navigate(-1);
     } catch (error) {
       console.error('로그인 실패:', error);
     }

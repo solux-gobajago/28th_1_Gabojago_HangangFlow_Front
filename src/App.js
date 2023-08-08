@@ -11,7 +11,11 @@ import Signup from './inc/signup.js';
 import Detail from './inc/detail.js';
 import CmApp from './inc/community.js';
 
-function Nav(){
+function Nav(props){
+  const [logstate, setLogstate]=React.useState("LOG IN");
+  // if (props==="LOG OUT"){
+  //   setLogstate("LOG OUT");
+  // }
   return(
     <div className='navigator'>
       <nav className='nav' >
@@ -32,7 +36,7 @@ function Nav(){
             classNames="button"
             unmountOnExit
           >
-            <Link to="/login" id='loginbutton'> LOG IN </Link>
+            <Link to="/login" id='loginbutton'> {logstate} </Link>
           </CSSTransition>
           <CSSTransition
             in={true}
@@ -64,46 +68,72 @@ function Sidebar() {
   
   const clickkeyword = (event) => {
     const value = event.target.getAttribute('value');
-    console.log("check-------------value", value);
+    
     if (!selected.includes(value)){
       setSelected([...selected, value]);
-      console.log("check1--------------");
       event.target.style.backgroundColor="grey";
       event.target.classList.add('selected'); // selected 배열에 키워드 추가
     }
 
     else{
-      console.log("check---------------2")
+  
       setSelected(selected.filter(item => item !== value));
       event.target.style.backgroundColor="rgba(234, 234, 234, 0.9)";
       event.target.classList.remove('selected'); //  selected 배열에 키워드 삭제
     }
-    console.log(selected);
+    
     //console.log(selected.length); // Just to verify the selected values, you can remove this line later
 
   };
 
-  const sendkeyword = async() => {
+  // const sendkeyword = async() => {
     
-    //flask 로 selected 배열 보내기
+  //   //flask 로 selected 배열 보내기
+  //   try {
+  //     // console.log(selected.length);
+  //     // console.log(JSON.stringify(selected));
+  //     // console.log("check------------------배열", JSON.stringify(selected));
+    
+  //     const  data  = { keywords : selected};
+      
+  //     // const response = await axios.post('/data/keywords', data); //키워드 전송
+      
+  //     // 배열을 쿼리 문자열로 직렬화
+  //     const queryString = selected.map(keyword => `keyword=${encodeURIComponent(keyword)}`).join('&');
+  //     // selected.map(keyword=> console.log(keyword));
+  //     // console.log("이게 쿼리스트링!!!",queryString);
+  //     // const parkselectedlist = await axios.get('/api/parkInfo/searchpark?keyword="키워드1"&"키워드"'); //공원 리스트 받아오기
+  //     // console.log("check ----- parklist", parkselectedlist);
+  //     console.log("hihihihihihihi", queryString);
+  //     const parkselectedlist = await axios.get(`/api/parkInfo/searchpark?${queryString}`);
+  //     console.log("check ----- parklist", parkselectedlist);
+  //   } catch (error) {
+  //     console.error('키워드 전송 실패:', error);
+  //   }
+  // };
+
+  // 체크
+  const sendkeyword = async () => {
     try {
-      // console.log(selected.length);
-      // console.log(JSON.stringify(selected));
-      // console.log("check------------------배열", JSON.stringify(selected));
-    
-      const  data  = { keywords : selected};
-      console.log("check data", data);
-  
-      const response = await axios.post('/data/keywords', data);
-    
-
-      console.log("check------response", response);
-
-  
+        console.log("selected-----", selected);
+        const queryString = selected.map(keyword => `keyword=${encodeURIComponent(keyword)}`).join('&');
+        console.log("query-string------", queryString);
+        const response = await axios.get(`/api/parkInfo?${queryString}`); // 수정된 부분
+        console.log("parklist-------", response.data);
     } catch (error) {
-      console.error('키워드 전송 실패:', error);
+        console.error('키워드 전송 실패:', error);
+    }
+};
+
+  const getselectedparks = async () => {
+    try {
+      
+    } catch (error) {
+      console.log("공원 리스트 받아오기 실패:", error);
     }
   };
+
+  
 
   return (
     <div>
@@ -138,6 +168,7 @@ function Sidebar() {
 
         </div>
         <button id='sendbutton' onClick={sendkeyword} disabled={selected.length>3}>SEND</button>
+        <button onClick={getselectedparks}>parks</button>
       </div>
       
       <div className='app-print-selected'>
@@ -150,6 +181,11 @@ function Sidebar() {
       </>
     ) }</h2>
       </div>
+        {/* 기존의 Parks 자리 */}
+        {/* <Parks props={parkalllist}/> */}
+        
+
+
     </div>
   );
 }
@@ -204,66 +240,60 @@ function SelectedKeyword({ keyword }) {
 }
 
 
-function Parks() {
+function Parks(props) {
+  const navigate = useNavigate();
 
-  const park_list = [
-    { title: "광나루한강공원", location:"서울 강동구 천호동" },
-    { title: "강서한강공원", location:"서울 강서구 개화동" },
-    { title: "난지한강공원", location:"서울 마포구 상암동" },
-    { title: "뚝섬한강공원", location:"서울 광진구 자양동" },
-    { title: "망원한강공원", location:"서울 마포구 망원동" },
-    { title: "반포한강공원", location:"서울 서초구 반포2동" },
-    { title: "양화한강공원", location:"서울 영등포구 당산동" },
-    { title: "여의도한강공원", location:"서울 영등포구 여의도동" },
-    { title: "이촌한강공원", location:"서울 용산구 이촌동" },
-    { title: "잠실한강공원", location:"서울 송파구 잠실동" },
-    { title: "잠원한강공원", location:"서울 강남구 압구정동" }
-  ];
-  
-  
-  const View_park = (park) => {
-    // Park 컴포넌트를 반환하여 각 공원을 렌더링합니다.
-    const navigate = useNavigate(); //detail 페이지에 값 전달
+  const View_park = React.useCallback((park) => {
     const handleParkClick = () => {
-      // When the <div> is clicked, navigate to the '/detail' page with the parkTitle in state.
-      navigate('/detail', { state: { parkTitle: park.title } });
+      navigate('/detail', { state: { parkTitle: park.parkName } });
     };
-  
+
     return (
-      <div key={park.title} className="app-park-box" id={park.title} onClick={handleParkClick}>
-        <h3>{park.title}</h3>
-        <p style={{marginLeft:"40px", marginBottom:"8px"}}>{park.location}</p>
+      <div key={park.parkName} className="app-park-box" id={park.parkName} onClick={handleParkClick}>
+        <h3>{park.parkName}</h3>
+        <p style={{ marginLeft: "40px", marginBottom: "8px" }}>{park.parkAddress}</p>
       </div>
     );
-  };
-
-
-
+  }, [navigate]);
 
   return (
     <div className="app-parks-container">
-
       <div id="app-parks-container">
-      {park_list.map(View_park)} 
+        {props.parklist.map(park => View_park(park))}
       </div>
     </div>
   );
 }
 
-function MainApp(){
-  return(
-  <div className="app-main-container">
-    <Nav></Nav>
-    <div className="app-content-container">
-    
-      <Sidebar></Sidebar>
-      <div className="app-container">
-      <Parks></Parks>
+function MainApp() {
+  const [parklist, setParklist] = React.useState([]);
+
+  React.useEffect(() => {
+    const getallparks = async () => {
+      try {
+        const parkalllist = await axios.get('/api/parkInfo/parkList');
+        setParklist(parkalllist.data);
+      } catch (error) {
+        console.log("공원 전체 받아오기 실패:", error);
+      }
+    };
+
+    getallparks();
+
+  }, []);
+
+  return (
+    <div className="app-main-container">
+      <Nav></Nav>
+      <div className="app-content-container">
+        <Sidebar></Sidebar>
+        <div className="app-container">
+          <Parks parklist={parklist}></Parks>
+        </div>
       </div>
     </div>
-  </div>
-  
   );
 }
+
 
 export default MainApp;

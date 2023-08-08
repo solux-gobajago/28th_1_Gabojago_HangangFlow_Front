@@ -69,21 +69,28 @@ function Sidebar() {
   const clickkeyword = (event) => {
     const value = event.target.getAttribute('value');
     
-    if (!selected.includes(value)){
-      setSelected([...selected, value]);
-      event.target.style.backgroundColor="grey";
-      event.target.classList.add('selected'); // selected 배열에 키워드 추가
-    }
+    // if (!selected.includes(value)){
+    //   setSelected([...selected, value]);
+    //   event.target.style.backgroundColor="grey";
+    //   event.target.classList.add('selected'); // selected 배열에 키워드 추가
+    // }
 
-    else{
+    // else{
   
-      setSelected(selected.filter(item => item !== value));
-      event.target.style.backgroundColor="rgba(234, 234, 234, 0.9)";
-      event.target.classList.remove('selected'); //  selected 배열에 키워드 삭제
-    }
+    //   setSelected(selected.filter(item => item !== value));
+    //   event.target.style.backgroundColor="rgba(234, 234, 234, 0.9)";
+    //   event.target.classList.remove('selected'); //  selected 배열에 키워드 삭제
+    // }
     
     //console.log(selected.length); // Just to verify the selected values, you can remove this line later
 
+    if (selected.includes(value)) {
+      setSelected(selected.filter(item => item !== value));
+    } else {
+      if (selected.length < 3) { // 최대 3개까지 선택 가능
+        setSelected([...selected, value]);
+      }
+    }
   };
 
   // const sendkeyword = async() => {
@@ -117,8 +124,9 @@ function Sidebar() {
     try {
         console.log("selected-----", selected);
         const queryString = selected.map(keyword => `keyword=${encodeURIComponent(keyword)}`).join('&');
-        console.log("query-string------", queryString);
+        // console.log("query-string------", queryString);
         const response = await axios.get(`/api/parkInfo?${queryString}`); // 수정된 부분
+     
         console.log("parklist-------", response.data);
     } catch (error) {
         console.error('키워드 전송 실패:', error);
@@ -168,7 +176,7 @@ function Sidebar() {
 
         </div>
         <button id='sendbutton' onClick={sendkeyword} disabled={selected.length>3}>SEND</button>
-        <button onClick={getselectedparks}>parks</button>
+        {/* <button onClick={getselectedparks}>parks</button> */}
       </div>
       
       <div className='app-print-selected'>

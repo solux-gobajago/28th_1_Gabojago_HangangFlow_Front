@@ -1,3 +1,30 @@
+/* community.css */
+
+/* Existing styles */
+
+/* Add responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .c-main-container {
+    grid-template-rows: auto auto; /* Adjust grid template rows for smaller screens */
+    grid-template-columns: 1fr; /* Adjust grid template columns for smaller screens */
+  }
+
+  .c-side-bar {
+    display: none;
+  }
+
+  .c-content-container {
+    margin: 0 auto; /* Center the content container horizontally */
+    width: 10%; /* Adjust the width as needed */
+    padding: 10px;
+  }
+}
+
+/* Other existing styles */
+
+
+
+
 body {
   margin: 0;
   padding: 0;

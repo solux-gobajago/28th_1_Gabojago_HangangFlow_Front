@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import {HeartOutlined, HeartFilled} from '@ant-design/icons';
 import './style.css'
@@ -70,61 +71,39 @@ function Nav(){
 }
 
 
-function Sidebari(){
-  return(
+function Sidebari({ onSelectCategory }) {
+  const hanriverParks = [
+    '광나루한강공원', '강서한강공원', '난지한강공원', '뚝섬한강공원',
+    '망원한강공원', '반포한강공원', '양화한강공원', '여의도한강공원',
+    '이촌한강공원', '잠실한강공원', '잠원한강공원'
+  ];
+
+  return (
     <aside className="c-side-bar">
-        <ul>
-
-          <li>
-            {/*
-            /* Font Awesome 아이콘 클래스를 사용하려면 라이브러리를 추가해야 함 */
-            /* <a href="#"><i class="fa-solid fa-cat"></i> menu1</a> 
-            <a href="#">
-              <i className="fa-solid fa-cat"></i> menu1
-        </a>*/}
-
-            <a href="#">광나루한강공원</a>
+      <ul>
+        {hanriverParks.map((park, index) => (
+          <li key={index}>
+            <a href="#" onClick={() => onSelectCategory(park)}>{park}</a>
           </li>
-          <li>
-            <a href="#">강서한강공원</a>
-          </li>
-          <li>
-            <a href="#">난지한강공원</a>
-          </li>
-          <li>
-            <a href="#">뚝섬한강공원</a>
-          </li>
-          <li>
-            <a href="#">망원한강공원</a>
-          </li>
-          <li>
-            <a href="#">반포한강공원</a>
-          </li>
-          <li>
-            <a href="#">양화한강공원</a>
-          </li>
-          <li>
-            <a href="#">여의도한강공원</a>
-          </li>
-          <li>
-            <a href="#">이촌한강공원</a>
-          </li>
-          <li>
-            <a href="#">잠실한강공원</a>
-          </li>
-          <li>
-            <a href="#">잠원한강공원</a>
-          </li>
-          
-        </ul>
-      </aside>
-
+        ))}
+      </ul>
+    </aside>
   );
 }
 
 {/*이미 게시되어있는 comment 박스를 출력 */}
-function GrayCircleWithBox({ num }) {
+function GrayCircleWithBox({ num, selectedCategory }) {
+  const [comments, setComments] = useState([]);
   num = 8;
+  const fetchComments = async () => {
+    try {
+      const response = await axios.get(`/api/getComments?category=${encodeURIComponent(selectedCategory)}`);
+      setComments(response.data);
+    } catch (error) {
+      console.error('댓글 가져오기 실패:', error);
+    }
+  };
+ 
   function rowComment() {
     return (
       <>
@@ -187,13 +166,15 @@ function GrayCircleWithBox({ num }) {
   );
 }
 
-function CmApp(){
+function CmApp() {
+  const [selectedCategory, setSelectedCategory] = useState('');
+
     return(
     <div className="c-main-container">
       <Nav></Nav>
       <div className="c-content-container">
-        <Sidebari></Sidebari>
-      <GrayCircleWithBox></GrayCircleWithBox>
+      <Sidebari onSelectCategory={setSelectedCategory} />
+      <GrayCircleWithBox num={8} selectedCategory={selectedCategory} />
       </div>
     </div>
     );

@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-background-image: url("background3.jpg");
+/*background-image: url("background3.jpg");*/
 }
 
 .app-main-container {
@@ -23,7 +23,8 @@ background-image: url("background3.jpg");
   align-items: center;
   padding: 10px;
   margin: 0; /* Remove any margins */
-  background-image: url("background3.jpg");
+  /*background-image: url(${backgroundImage});*/
+
   z-index: 1;
 }
 
@@ -196,4 +197,28 @@ background-image: url("background3.jpg");
   border-color: rgb(114, 114, 114);
   background-color: rgb(196, 119, 52);
   color: rgb(196, 196, 196);
+}
+
+.background {
+  width: 100vw;
+  height: 100vh;
+  transition: background-image 0.5s ease;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.night {
+  background-image: url('./inc/background5.jpg');
+}
+
+.morning {
+  background-image: url('./inc/background4.jpg');
+}
+
+.afternoon {
+  background-image: url('./inc/background3.jpg');
+}
+
+.evening {
+  background-image: url('./inc/background4.jpg');
 }

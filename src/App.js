@@ -52,7 +52,7 @@ function Nav(props){
             classNames="button"
             unmountOnExit
           >
-            <Link to="/mypage" id='mypagebutton'> MY PAGE </Link>
+            <Link to="/map" id='mypagebutton'> MY PAGE </Link>
           </CSSTransition>
         </div>
       </nav>
@@ -81,19 +81,19 @@ function Sidebar() {
   
   const [parklist, setParklist] = React.useState([]);
 
-  React.useEffect(() => {
-    const getallparks = async () => {
-      try {
-        const parkalllist = await axios.get('/api/parkInfo/parkList');
-        setParklist(parkalllist.data);
-      } catch (error) {
-        console.log("공원 전체 받아오기 실패:", error);
-      }
-    };
+  // React.useEffect(() => {
+  //   const getallparks = async () => {
+  //     try {
+  //       const parkalllist = await axios.get('/api/parkInfo/parkList');
+  //       setParklist(parkalllist.data);
+  //     } catch (error) {
+  //       console.log("공원 전체 받아오기 실패:", error);
+  //     }
+  //   };
 
-    getallparks();
+  //   getallparks();
 
-  }, []);
+  // }, []);
   const clickkeyword = (event) => {
     const value = event.target.getAttribute('value');
     
@@ -162,10 +162,6 @@ function Sidebar() {
     }
 };
 
-  
-
-  
-
   return (
     <div>
       <div className='sidebar'>
@@ -220,9 +216,6 @@ function Sidebar() {
     </div></div>
         {/* 기존의 Parks 자리 */}
         {/* <Parks props={parkalllist}/> */}
-        
-
-
     </div>
   );
 }
@@ -303,24 +296,51 @@ function Parks(props) {
 }
 
 function MainApp() {
-  // const [parklist, setParklist] = React.useState([]);
 
-  // React.useEffect(() => {
-  //   const getallparks = async () => {
-  //     try {
-  //       const parkalllist = await axios.get('/api/parkInfo/parkList');
-  //       setParklist(parkalllist.data);
-  //     } catch (error) {
-  //       console.log("공원 전체 받아오기 실패:", error);
-  //     }
-  //   };
-
-  //   getallparks();
-
-  // }, []);
+  function BackGround() {
+    const [backgroundImageClass, setBackgroundImageClass] = useState('');
+  
+    useEffect(() => {
+      const getCurrentTime = () => {  //실시간 시간을 받아옴
+        const now = new Date();
+        const hours = now.getHours();
+  
+        let imageClass = '';
+  
+        if (hours >= 0 && hours < 6) {
+          imageClass = 'night';               //밤
+        } else if (hours >= 6 && hours < 12) {
+          imageClass = 'morning';               //아침
+        } else if (hours >= 12 && hours < 18) {
+          imageClass = 'afternoon';     //낮
+        } else {
+          imageClass = 'evening';         //저녁
+        }
+  
+        setBackgroundImageClass(imageClass);
+      };
+  
+      // 처음에 한 번 호출하고, 1초마다 업데이트
+      getCurrentTime();
+      const intervalId = setInterval(getCurrentTime, 1000);
+  
+      // 컴포넌트가 언마운트될 때 인터벌 해제
+      return () => clearInterval(intervalId);
+    }, []); // 빈 배열 대신 빈 배열로 설정
+    
+  return (
+    <div className={`background ${backgroundImageClass}`}>         
+      {/* 받아온 배경 이미지를 반환 */}
+    </div>
+  );
+  }
 
   return (
+
+    <div>
+    
     <div className="app-main-container">
+    <BackGround></BackGround>
       <Nav></Nav>
       <div className="app-content-container">
         <Sidebar></Sidebar>
@@ -329,9 +349,7 @@ function MainApp() {
         </div> */}
       </div>
     </div>
+    </div>
   );
-}
-
-
+};
 export default MainApp;
-

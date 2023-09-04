@@ -1,6 +1,5 @@
 import './community.css';
-
-import React, { useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
@@ -9,6 +8,10 @@ import axios from 'axios';
 import {HeartOutlined, HeartFilled} from '@ant-design/icons';
 import './style.css'
 
+
+
+
+
 class LikeButton extends React.Component {
   state = {
     isChecked: false,
@@ -16,6 +19,49 @@ class LikeButton extends React.Component {
   };
 
   onClick = () => {
+    // 좋아요 추가 요청 보내기
+    const communityUuid = '555ca719-4103-4471-9d5f-217b7993b27a'; // 실제 커뮤니티 UUID로 대체해야 함
+    const userUuid = '6025af4f-8944-4fa0-b2ca-683dad3e6118'; // 실제 사용자 UUID로 대체해야 함
+
+
+
+    const { isChecked } = this.state;
+
+    // 버튼을 누를때마다
+    if (isChecked) {
+      this.setState({
+        isChecked: false,
+        notice: '',
+      });
+    } else {
+      this.setState({
+        isChecked: true,
+        notice: '1',
+      });
+
+      const likesData = {
+        userUuid: userUuid,
+        communityUuid: communityUuid
+      };
+  
+      axios.post(`http://localhost:3002/api/likes/${communityUuid}`, likesData)
+        .then(response => {
+          console.log('Likes added successfully:', response.data);
+          // 성공적으로 추가되었을 때의 처리
+        })
+        .catch(error => {
+          console.error('Error adding likes:', error);
+          // 에러 발생 시의 처리
+        });
+      // // 좋아요 버튼이 눌렸을 때, 서버로 데이터를 전송
+      // axios.post('http://localhost:3001/api/likes/:communityUuid', { postId: 'your_post_id' }) // 적절한 엔드포인트와 데이터를 사용해야 합니다.
+      //   .then(response => {
+      //     console.log('Liked successfully:', response.data);
+      //   })
+      //   .catch(error => {
+      //     console.error('Error while liking:', error);
+      //   });
+    }
     // 버튼을 누를때마다
     this.state.isChecked
       ? this.setState({
@@ -97,14 +143,25 @@ function GrayCircleWithBox({ num, selectedCategory }) {
   num = 8;
   const fetchComments = async () => {
     try {
-      const response = await axios.get(`/api/getComments?category=${encodeURIComponent(selectedCategory)}`);
+      //const response = await axios.get(`/api/getComments?category=${encodeURIComponent(selectedCategory)}`);
+      const response = await axios.get(`http://localhost:3001/api/community/article`)
+      .then(response => {
+        console.log('게시글 get successfully:', response.data);
+        // 성공적으로 추가되었을 때의 처리
+      })
+      .catch(error => {
+        console.error('Error get 게시글:', error);
+        // 에러 발생 시의 처리
+      });
+
       setComments(response.data);
     } catch (error) {
-      console.error('댓글 가져오기 실패:', error);
+      console.error('게시글 가져오기 실패:', error);
     }
   };
  
   function rowComment() {
+    // const [contents, setContents] = useState([]);
     return (
       <>
         <tr style={{ borderTop: '1px solid black' }}>
@@ -113,8 +170,14 @@ function GrayCircleWithBox({ num, selectedCategory }) {
           </td>
           <td>
             <div className="GrayBox">
-              {/* Add the image here */}
-            </div>
+            <textarea className="Textarea"
+              name="contents"
+              cols="100px"
+              rows="780px"
+              value={"안녕하세요"}
+              disabled
+            ></textarea>            
+          </div>
           </td>
           <td style={{ display: 'inline-table', justifyContent: 'flex-end' }}>
             <LikeButton></LikeButton>
@@ -152,7 +215,7 @@ function GrayCircleWithBox({ num, selectedCategory }) {
             <td>
 
               <button type="button" className="btn btn-outline-dark" style={{ margin: '4px', marginTop: '4px' }}>POST</button>
-              <button type="button" class="btn btn-secondary" disabled style={{ margin: '4px', marginTop: '4px' }}>Login</button>
+              <button type="button" className="btn btn-secondary" disabled style={{ margin: '4px', marginTop: '4px' }}>Login</button>
             </td>
           </tr>
 
@@ -167,10 +230,48 @@ function GrayCircleWithBox({ num, selectedCategory }) {
 }
 
 function CmApp() {
-  const [selectedCategory, setSelectedCategory] = useState('');
 
+  const [selectedCategory, setSelectedCategory] = useState('');
+  function BackGround() {
+      const [backgroundImageClass, setBackgroundImageClass] = useState('');
+    
+      useEffect(() => {
+        const getCurrentTime = () => {  //실시간 시간을 받아옴
+          const now = new Date();
+          const hours = now.getHours();
+    
+          let imageClass = '';
+    
+          if (hours >= 0 && hours < 6) {
+            imageClass = 'night';               //밤
+          } else if (hours >= 6 && hours < 12) {
+            imageClass = 'morning';               //아침
+          } else if (hours >= 12 && hours < 18) {
+            imageClass = 'afternoon';     //낮
+          } else {
+            imageClass = 'evening';         //저녁
+          }
+    
+          setBackgroundImageClass(imageClass);
+        };
+    
+        // 처음에 한 번 호출하고, 1초마다 업데이트
+        getCurrentTime();
+        const intervalId = setInterval(getCurrentTime, 1000);
+    
+        // 컴포넌트가 언마운트될 때 인터벌 해제
+        return () => clearInterval(intervalId);
+      }, []); // 빈 배열 대신 빈 배열로 설정
+      
+    return (
+      <div className={`background ${backgroundImageClass}`}>         
+        {/* 받아온 배경 이미지를 반환 */}
+      </div>
+    );
+    }
     return(
     <div className="c-main-container">
+      <BackGround></BackGround>
       <Nav></Nav>
       <div className="c-content-container">
       <Sidebari onSelectCategory={setSelectedCategory} />

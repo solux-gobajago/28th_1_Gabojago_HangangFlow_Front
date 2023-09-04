@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './login.css';
 import axios from 'axios';
@@ -9,7 +9,44 @@ function Home() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  /*
+  function BackGround() {
+    const [backgroundImageClass, setBackgroundImageClass] = useState('');
+  
+    useEffect(() => {
+      const getCurrentTime = () => {  //실시간 시간을 받아옴
+        const now = new Date();
+        const hours = now.getHours();
+  
+        let imageClass = '';
+  
+        if (hours >= 0 && hours < 6) {
+          imageClass = 'night';               //밤
+        } else if (hours >= 6 && hours < 12) {
+          imageClass = 'morning';               //아침
+        } else if (hours >= 12 && hours < 18) {
+          imageClass = 'afternoon';     //낮
+        } else {
+          imageClass = 'evening';         //저녁
+        }
+  
+        setBackgroundImageClass(imageClass);
+      };
+  
+      // 처음에 한 번 호출하고, 1초마다 업데이트
+      getCurrentTime();
+      const intervalId = setInterval(getCurrentTime, 1000);
+  
+      // 컴포넌트가 언마운트될 때 인터벌 해제
+      return () => clearInterval(intervalId);
+    }, []); // 빈 배열 대신 빈 배열로 설정
+    
+  return (
+    <div className={`background ${backgroundImageClass}`}>         
+      {/* 받아온 배경 이미지를 반환 }
+    </div>
+  );
+  }*/
   const handleLogin = async () => {
     try {
       console.log("check---- handleLogin");
@@ -41,6 +78,7 @@ function Home() {
   };
 
   return (
+    <div>
     <div className='login-container'>
       <div className='login-box'>
         <div className='login-text'>
@@ -80,7 +118,7 @@ function Home() {
         <span className='x-icon' onClick={handleGoBack}>✕</span>
         </button>
       </div>
-    </div>
+    </div>     </div>
   );
 }
 

@@ -14,7 +14,7 @@ import { AnimatePresence } from "framer-motion";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  /*<React.StrictMode>*/
     <BrowserRouter>
       <Routes>
             <Route path='/' element={<MainApp />} />
@@ -25,6 +25,6 @@ root.render(
             <Route path='/community' element={<CmApp />} />
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>
+ /* </React.StrictMode>*/
 );
 reportWebVitals();

@@ -264,3 +264,33 @@ tr {
 td {
   border-bottom: 10px solid black;
 }
+.Textarea{
+  border: none;
+  outline: none;
+  resize: none;
+  background-color: transparent;
+}
+
+.background {
+  width: 100vw;
+  height: 100vh;
+  transition: background-image 0.5s ease;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.night {
+  background-image: url('background5.jpg');
+}
+
+.morning {
+  background-image: url('background4.jpg');
+}
+
+.afternoon {
+  background-image: url('background3.jpg');
+}
+
+.evening {
+  background-image: url('background4.jpg');
+}

@@ -1,4 +1,4 @@
-import './community.css';
+import '../css/community.css';
 import React, { useEffect, useState} from 'react';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -6,11 +6,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import {HeartOutlined, HeartFilled} from '@ant-design/icons';
-import './style.css'
-
-
-
-
+import '../css/style.css'
 
 class LikeButton extends React.Component {
   state = {
@@ -20,11 +16,8 @@ class LikeButton extends React.Component {
 
   onClick = () => {
     // 좋아요 추가 요청 보내기
-    const communityUuid = '555ca719-4103-4471-9d5f-217b7993b27a'; // 실제 커뮤니티 UUID로 대체해야 함
-    const userUuid = '6025af4f-8944-4fa0-b2ca-683dad3e6118'; // 실제 사용자 UUID로 대체해야 함
-
-
-
+    const communityparkUuid = '555ca719-4103-4471-9d5f-217b7993b27a'; // 실제 커뮤니티 parkUuid로 대체해야 함
+    const userparkUuid = '6025af4f-8944-4fa0-b2ca-683dad3e6118'; // 실제 사용자 parkUuid로 대체해야 함
     const { isChecked } = this.state;
 
     // 버튼을 누를때마다
@@ -40,11 +33,12 @@ class LikeButton extends React.Component {
       });
 
       const likesData = {
-        userUuid: userUuid,
-        communityUuid: communityUuid
+        userparkUuid: userparkUuid,
+        communityparkUuid: communityparkUuid
       };
-  
-      axios.post(`http://localhost:3002/api/likes/${communityUuid}`, likesData)
+      axios.post(`http://localhost:3002/api/likes/${communityparkUuid}`, likesData)
+
+      axios.post(`http://localhost:3002/api/likes/${communityparkUuid}`, likesData)
         .then(response => {
           console.log('Likes added successfully:', response.data);
           // 성공적으로 추가되었을 때의 처리
@@ -54,7 +48,7 @@ class LikeButton extends React.Component {
           // 에러 발생 시의 처리
         });
       // // 좋아요 버튼이 눌렸을 때, 서버로 데이터를 전송
-      // axios.post('http://localhost:3001/api/likes/:communityUuid', { postId: 'your_post_id' }) // 적절한 엔드포인트와 데이터를 사용해야 합니다.
+      // axios.post('http://localhost:3001/api/likes/:communityparkUuid', { postId: 'your_post_id' }) // 적절한 엔드포인트와 데이터를 사용해야 합니다.
       //   .then(response => {
       //     console.log('Liked successfully:', response.data);
       //   })
@@ -118,10 +112,20 @@ function Nav(){
 
 
 function Sidebari({ onSelectCategory }) {
-  const hanriverParks = [
-    '광나루한강공원', '강서한강공원', '난지한강공원', '뚝섬한강공원',
-    '망원한강공원', '반포한강공원', '양화한강공원', '여의도한강공원',
-    '이촌한강공원', '잠실한강공원', '잠원한강공원'
+
+  const hanriverParks = [ 
+    { name: '전체'},
+    { name: '광나루한강공원', parkUuid: '5f007f0f-2f64-11ee-804e-0aa821bd4f9c' },
+    { name: '강서한강공원', parkUuid: '5f00e757-2f64-11ee-804e-0aa821bd4f9c' },
+    { name: '난지한강공원', parkUuid: '5f00e727-2f64-11ee-804e-0aa821bd4f9c' },
+    { name: '뚝섬한강공원', parkUuid: '5f00e586-2f64-11ee-804e-0aa821bd4f9c' },
+    { name: '망원한강공원', parkUuid: '5f00e6b6-2f64-11ee-804e-0aa821bd4f9c' },
+    { name: '반포한강공원', parkUuid: '5f00e637-2f64-11ee-804e-0aa821bd4f9c' },
+    { name:  '양화한강공원', parkUuid: '5f00e787-2f64-11ee-804e-0aa821bd4f9c' },
+    { name: '여의도한강공원', parkUuid: '5f00e6ea-2f64-11ee-804e-0aa821bd4f9c' },
+    { name: '이촌한강공원', parkUuid: '5f00e604-2f64-11ee-804e-0aa821bd4f9c' },
+    { name: '잠실한강공원', parkUuid: '5f00e3f5-2f64-11ee-804e-0aa821bd4f9c' },
+    { name:  '잠원한강공원', parkUuid: '5f00e5cc-2f64-11ee-804e-0aa821bd4f9c' }
   ];
 
   return (
@@ -129,7 +133,7 @@ function Sidebari({ onSelectCategory }) {
       <ul>
         {hanriverParks.map((park, index) => (
           <li key={index}>
-            <a href="#" onClick={() => onSelectCategory(park)}>{park}</a>
+            <a href="#" onClick={() =>onSelectCategory(park.parkUuid)}>{park.name}</a>
           </li>
         ))}
       </ul>
@@ -138,15 +142,15 @@ function Sidebari({ onSelectCategory }) {
 }
 
 {/*이미 게시되어있는 comment 박스를 출력 */}
-function GrayCircleWithBox({ num, selectedCategory }) {
+function GrayCircleWithBox({ num }) {
   const [comments, setComments] = useState([]);
   num = 8;
   const fetchComments = async () => {
     try {
-      //const response = await axios.get(`/api/getComments?category=${encodeURIComponent(selectedCategory)}`);
-      const response = await axios.get(`http://localhost:3001/api/community/article`)
-      .then(response => {
-        console.log('게시글 get successfully:', response.data);
+      //const comment_response = await axios.get(`/api/getComments?category=${encodeURIComponent(selectedCategory)}`);
+      const comment_response = await axios.get(`http://localhost:3001/api/community/article`)
+      .then(comment_response => {
+        console.log('게시글 get successfully:', comment_response.data);
         // 성공적으로 추가되었을 때의 처리
       })
       .catch(error => {
@@ -154,12 +158,53 @@ function GrayCircleWithBox({ num, selectedCategory }) {
         // 에러 발생 시의 처리
       });
 
-      setComments(response.data);
+      setComments(comment_response.data);
     } catch (error) {
       console.error('게시글 가져오기 실패:', error);
     }
   };
  
+function PostForm() {
+  const [selectedParkUuid, setSelectedParkUuid] = useState(null);
+
+  const handleSelectCategory = (parkUuid) => {
+    setSelectedParkUuid(parkUuid);
+  };
+  // 게시글과 관련된 상태 변수 설정
+  const [postContent, setPostContent] = useState('');
+  
+  // 게시글을 서버로 전송하는 함수
+  const submitPost = async () => {
+    try {
+      // 백엔드 서버의 엔드포인트 URL을 여기에 입력하세요
+      const apiUrl = `/community/${selectedParkUuid}/article/create`; // 백엔드 엔드포인트 예시
+
+      // 게시글 데이터를 객체로 만들기
+      const postData = {
+        userUuid: userUuid, // 유저 parkUuid
+        parkUuid:parkUuid, // 공원 parkUuid
+        content: postContent,
+        // 다른 필요한 데이터도 추가할 수 있습니다.
+      };
+
+      // Axios를 사용하여 POST 요청 보내기
+      const content_response = await axios.post(apiUrl, postData);
+
+      // 서버 응답 확인
+      if (content_response.status === 200) {
+        // 성공적으로 게시글이 전송되었을 때 처리할 코드 작성
+        console.log('게시글이 성공적으로 전송되었습니다.');
+        // 예: 게시글 입력 필드 초기화
+        setPostContent('');
+      } else {
+        // 오류 처리
+        console.error('게시글 전송 실패:', content_response);
+      }
+    } catch (error) {
+      console.error('게시글 전송 오류:', error);
+    }
+  };
+}
   function rowComment() {
     // const [contents, setContents] = useState([]);
     return (
@@ -170,13 +215,14 @@ function GrayCircleWithBox({ num, selectedCategory }) {
           </td>
           <td>
             <div className="GrayBox">
-            <textarea className="Textarea"
-              name="contents"
+            <textarea
+              placeholder="게시글 내용을 입력하세요"
+              value={postContent}
               cols="100px"
               rows="780px"
-              value={"안녕하세요"}
+              onChange={(e) => setPostContent(e.target.value)}
               disabled
-            ></textarea>            
+            />        
           </div>
           </td>
           <td style={{ display: 'inline-table', justifyContent: 'flex-end' }}>
@@ -210,11 +256,19 @@ function GrayCircleWithBox({ num, selectedCategory }) {
               <div className="GrayCircle"></div>
             </td>
             <td>
-              <div className="GrayBox"></div>
+              <div className="GrayBox">
+              <textarea className="Textarea"
+              name="contents"
+              cols="100px"
+              rows="780px"
+              value={"글 작성해볼까나~"}
+              disabled
+            ></textarea> 
+            </div>
             </td>
             <td>
 
-              <button type="button" className="btn btn-outline-dark" style={{ margin: '4px', marginTop: '4px' }}>POST</button>
+              <button type="button" onClick={submitPost} className="btn btn-outline-dark" style={{ margin: '4px', marginTop: '4px' }}>POST</button>
               <button type="button" className="btn btn-secondary" disabled style={{ margin: '4px', marginTop: '4px' }}>Login</button>
             </td>
           </tr>
@@ -274,8 +328,8 @@ function CmApp() {
       <BackGround></BackGround>
       <Nav></Nav>
       <div className="c-content-container">
-      <Sidebari onSelectCategory={setSelectedCategory} />
-      <GrayCircleWithBox num={8} selectedCategory={selectedCategory} />
+      <Sidebari onSelectCategory={handleSelectCategory}/>
+      <GrayCircleWithBox num={8} selectedCategory={handleSelectCategory} />
       </div>
     </div>
     );

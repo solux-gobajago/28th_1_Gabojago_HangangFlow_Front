@@ -1,5 +1,5 @@
 .whole-container{
-  background-image: url("background3-1.jpg");
+  background-image: url("../img/background3-1.jpg");
 }
 
 body::-webkit-scrollbar{

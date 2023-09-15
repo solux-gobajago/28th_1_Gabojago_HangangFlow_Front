@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './login.css';
+import '../css/login.css';
 import axios from 'axios';
 import MainApp from '../App.js'; //상위
 

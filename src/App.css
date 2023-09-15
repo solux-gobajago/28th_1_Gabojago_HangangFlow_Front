@@ -208,17 +208,17 @@ body {
 }
 
 .night {
-  background-image: url('./inc/background5.jpg');
+  background-image: url('/src/img/background5.jpg');
 }
 
 .morning {
-  background-image: url('./inc/background4.jpg');
+  background-image: url('/src/img/background4.jpg');
 }
 
 .afternoon {
-  background-image: url('./inc/background3.jpg');
+  background-image: url('/src/img/background3.jpg');
 }
 
 .evening {
-  background-image: url('./inc/background4.jpg');
+  background-image: url('/src/img/background4.jpg');
 }

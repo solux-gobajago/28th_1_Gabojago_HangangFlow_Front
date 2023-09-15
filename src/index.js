@@ -4,11 +4,11 @@ import { CSSTransition } from 'react-transition-group';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import MainApp from './App.js';
-import Mypage from './inc/mypage.js';
-import Login from './inc/login.js';
-import Signup from './inc/signup.js';
-import Detail from './inc/detail.js';
-import CmApp from './inc/community.js';
+import Mypage from './pages/mypage.js';
+import Login from './pages/login.js';
+import Signup from './pages/signup.js';
+import Detail from './pages/detail.js';
+import CmApp from './pages/community.js';
 import reportWebVitals from './reportWebVitals';
 import { AnimatePresence } from "framer-motion";
 

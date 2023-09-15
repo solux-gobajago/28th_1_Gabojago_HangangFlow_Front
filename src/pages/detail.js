@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, useLocation, Link } from 'react-router-dom';
 import axios from 'axios';
-import './detail.css';
-import spinner from './Spin-0.6s-200px.gif';
-
-import rep from './parkimage/강서한강공원1.jpg';
-
-import filledstar from "./filledstar.png";
-import unfilledstar from "./unfilledstar.png";
+import '../css/detail.css';
+import spinner from '../img/Spin-0.6s-200px.gif';
+import rep from '../img/parkimage/강서한강공원1.jpg';
+import filledstar from "../img/filledstar.png";
+import unfilledstar from "../img/unfilledstar.png";
 
 
 const { kakao } = window;
@@ -143,7 +141,7 @@ function Detail() {
                 {images.map((image, index) => (
                   <img
                     key={index}
-                    src={require(`./parkimage/${image}`)}
+                    src={require(`../img/parkimage/${image}`)}
                     alt={park_name}
                     style={{
                       objectFit: 'cover',

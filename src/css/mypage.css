@@ -20,7 +20,7 @@
 
     position: absolute;
     transform: translate(20%,10%);
-    background-image: url(person2.jpg);
+    background-image: url(../img/person2.jpg);
 }
 .mypage-box .bookmark{
     width: 50%;

@@ -3,14 +3,14 @@ import { BrowserRouter, Routes, Route, useNavigate, Link, json, Form } from 'rea
 import { CSSTransition } from 'react-transition-group';
 import axios from 'axios';
 import './App.css';
-import './index.css';
-import { Home, logstate } from './inc/login.js';
+import './index.js';
+import { Home, logstate } from './pages/login.js';
 
-import Mypage from './inc/mypage.js';
-import Login from './inc/login.js';
-import Signup from './inc/signup.js';
-import Detail from './inc/detail.js';
-import CmApp from './inc/community.js';
+import Mypage from './pages/mypage.js';
+import Login from './pages/login.js';
+import Signup from './pages/signup.js';
+import Detail from './pages/detail.js';
+import CmApp from './pages/community.js';
 
 function Nav(props){
   
